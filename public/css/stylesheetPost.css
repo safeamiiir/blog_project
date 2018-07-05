@@ -1,0 +1,17 @@
+.auther{
+    margin-top: 100px;
+    direction: rtl;
+}
+.backgrond-auther{
+    background-color: #e1e8ee !important;
+}
+.direction-matlab{
+    direction: rtl;
+}
+textarea{
+    resize: none;
+    direction: rtl;
+}
+.margin-top{
+    margin-top:10px;
+}

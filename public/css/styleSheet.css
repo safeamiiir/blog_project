@@ -1,0 +1,84 @@
+@font-face {
+    font-family: IRANSans;
+    src: url(../fonts/IRANSansWeb.woff);
+}
+body{
+    background-color: #e1e8ee;
+    font-family: IRANSans, Helvetica, Arial, sans-serif;
+    margin: 0;
+}
+.btn-categuris{
+    margin-top: 100px;
+}
+.btn, .btn-large, .btn-floating, .btn-large, .btn-flat{
+    padding: 0 1rem !important;
+}
+.avatar {
+    height: 85px;
+    position: relative;
+    width: 85px;
+}
+
+.avatar img {
+    border-radius: 9999px;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+}
+
+@keyframes cycle-colors {
+    0% { border-color: hsl(212, 22%, 81%); }
+    50% { border-color: hsl(189, 20%, 60%); }
+    100% { border-color: hsl(198, 22%, 84%); }
+}
+
+@keyframes pulse {
+    to {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+.avatar::before,
+.avatar::after {
+    animation: pulse 2s linear infinite;
+    border: #cfd8dc  solid 8px;
+    border-radius: 9999px;
+    box-sizing: border-box;
+    content: ' ';
+    height: 140%;
+    left: -20%;
+    opacity: .6;
+    position: absolute;
+    top: -20%;
+    transform: scale(0.714);
+    width: 140%;
+    z-index: 1;
+}
+
+.avatar::after {
+    animation-delay: 1s;
+}
+
+.avatar:hover::before,
+.avatar:hover::after {
+    animation: pulse 1s linear infinite, cycle-colors 6s linear infinite;
+}
+
+.avatar:hover::after {
+    animation-delay: .5s;
+}
+.card-content{
+    direction: rtl;
+}
+.card-reveal{
+    direction: rtl;
+}
+.margin-left{
+    margin-left: 50px;
+}
+.navbar-fix{
+    position: fixed;
+    z-index: 100;
+}

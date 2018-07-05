@@ -1,0 +1,28 @@
+{
+  "name": "blognode",
+  "version": "1.0.0",
+  "description": "The Maktab Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Erfan Rastegaran, Alireza Daneshfahim, Amirreza Safehian, Masoud Sadeghi",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "lodash": "^4.17.10",
+    "md5": "^2.2.1",
+    "method-override": "^2.3.10",
+    "mongoose": "^5.1.6",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "reload": "^2.3.0"
+  }
+}
