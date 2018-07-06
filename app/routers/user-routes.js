@@ -82,16 +82,16 @@ router.get('/logInSignUp', function (req, res) {
         return res.redirect('dashboard');
     }
     // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/logInSignUp.html') //Win,Masoud
-    res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/logInSignUp.html') //Win,Alireza
-    // res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/logInSignUp.html') //Mac
+    // res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/logInSignUp.html') //Win,Alireza
+    res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/logInSignUp.html') //Mac
 
 
 });
 
 router.get('/signUp', function (req, res) {
     // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/logInSignUp.html') //Win,Masoud
-    res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/logInSignUp.html') //Win,Alireza
-    // res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/logInSignUp.html') //mac
+    // res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/logInSignUp.html') //Win,Alireza
+    res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/logInSignUp.html') //mac
 
 });
 
@@ -131,6 +131,38 @@ router.post('/signUp', function (req, res) {
     });
 });
 
+router.post('/addingart', function (req,res) {
+
+    console.log("add-article");
+
+    var date = new Date(Date.now());
+    console.log(date);
+
+    var article = new Article({
+        title : req.body.title,
+        content : req.body.content,
+        abstract : req.body.abstract,
+        author : req.user.userName,
+        createDate : date,
+        lastEdit : date,
+        likes : req.body.likes
+        // image : { Data : Buffer , contentType : String}
+    });
+    article.save(function (err,article) {
+        if (err) {
+            _.forEach(err.errors, function (val, key) {
+                console.log("valErr >>>>> " + key + " : " + err.errors[key].properties.type);
+            });
+            console.log(err);
+            return res.send(500, err.message);
+        }
+        else {
+            console.log("article has successfully Added To DB !");
+        }
+
+    })
+});
+
 
 router.get('/test', isLogedIn , function(req,res){
     console.log("test.....................");
@@ -150,8 +182,8 @@ router.post('/logIn', passport.authenticate('localLogin', { failureRedirect: '/l
         console.log(req.session);
         console.log(req.url);
         // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/dashboard/dashboard.html'); // Win,Masoud
-        res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/dashboard/dashboard.html'); // Win,Alireza
-        // res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html'); //Mac
+        // res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/dashboard/dashboard.html'); // Win,Alireza
+        res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html'); //Mac
         // res.redirect('/user/dashboard');
     }
     //return res.redirect('/user/dashboard')
@@ -167,9 +199,16 @@ router.get('/dashboard', isLogedIn, function (req, res) {
     console.log('>>>>>>>>.dashboardddd');
     // res.set('Content-Type','text/html');
     // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/dashboard/dashboard.html'); // Win,Masoud
-    res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/dashboard/dashboard.html'); // Win,Alireza
-    // res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html');  //Mac
+    // res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/dashboard/dashboard.html'); // Win,Alireza
+    res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html');  //Mac
     // res.render('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/dashboard/dashboard.ejs');
+});
+
+
+//.............................................. ADD Article  ...........................................
+router.get('/addart', isLogedIn, function (req,res) {
+    res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/addArticle.ejs');  //Mac
+
 });
 
 

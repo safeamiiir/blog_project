@@ -8,8 +8,8 @@ var article = new Schema({
     author : { type : Object , required : true },
     createDate : Date,
     lastEdit : Date,
-    image : { Data : Buffer , contentType : String},
-    likes : []
+    // image : { Data : Buffer , contentType : String},
+    likes : Number
 });
 
 

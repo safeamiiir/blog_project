@@ -55,7 +55,7 @@ $("#logInButton").on('click', function () {
     let valueOfInput = {
         userName : $('#lUserName').val(),
         password : $('#lPassword').val()
-    }
+    };
 
 console.log(valueOfInput);
 $.ajax({
