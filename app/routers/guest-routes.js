@@ -11,18 +11,21 @@ router.get("/",function(req,res){
     //     res.render('../view/index.ejs',{articles : articles});
     // });
     // res.send("guest");
-    // res.sendFile("E:/Ducuments/Makab/Blog_Project/BlogNode/view/index.html"); //win
-    res.sendFile("/Users/amir/WebstormProjects/Blog_Project/view/index.html"); //mac
+    // res.sendFile("E:/Ducuments/Makab/Blog_Project/BlogNode/view/index.html"); //win,Masoud
+    res.sendFile("C:/Users/Alireza/Desktop/Blog_Project/view/index.html"); //win,Alireza
+    // res.sendFile("/Users/amir/WebstormProjects/Blog_Project/view/index.html"); //mac
 });
 
-router.get("/post",function(req,res){
-    // res.render("E:/Ducuments/Makab/Blog_Project/BlogNode/view/postPage.ejs"); // Win
-    res.render("/Users/amir/WebstormProjects/Blog_Project/view/postPage.ejs");  // Mac
+router.get("/profile",function(req,res){
+    // res.render("E:/Ducuments/Makab/Blog_Project/BlogNode/view/postPage.ejs"); // Win,Masoud
+    res.render("C:/Users/Alireza/Desktop/Blog_Project/view/postPage.ejs"); // Win,Alireza
+    // res.render("/Users/amir/WebstormProjects/Blog_Project/view/postPage.ejs");  // Mac
 });
 
-router.get("/profile" , function(req , res){
-    // res.render("E:/Ducuments/Makab/Blog_Project/BlogNode/view/profile.ejs"); // Win
-    res.render("/Users/amir/WebstormProjects/Blog_Project/view/profile.ejs"); // Mac
+router.get("/post" , function(req , res){
+    // res.render("E:/Ducuments/Makab/Blog_Project/BlogNode/view/profile.ejs"); // Win,Masoud
+    res.render("C:/Users/Alireza/Desktop/Blog_Project/view/profile.ejs"); // Win,Alireza
+    // res.render("/Users/amir/WebstormProjects/Blog_Project/view/profile.ejs"); // Mac
 });
 module.exports = router;
 

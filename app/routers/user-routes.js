@@ -69,9 +69,9 @@ function isLogedIn(req, res, next) {
 
 router.get('/', function (req, res) {
     if (req.isAuthenticated()) {
-        res.redirect('dashboard')
+        res.redirect('/user/dashboard')
     } else {
-        res.redirect('logInSignUp')
+        res.redirect('/user/logInSignUp')
     }
 });
 
@@ -81,14 +81,17 @@ router.get('/logInSignUp', function (req, res) {
     if (req.isAuthenticated()) {
         return res.redirect('dashboard');
     }
-    // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/logInSignUp.html') //Win
-    res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/logInSignUp.html') //Mac
+    // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/logInSignUp.html') //Win,Masoud
+    res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/logInSignUp.html') //Win,Alireza
+    // res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/logInSignUp.html') //Mac
+
 
 });
 
 router.get('/signUp', function (req, res) {
-    // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/logInSignUp.html') //Win
-    res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/logInSignUp.html') //mac
+    // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/logInSignUp.html') //Win,Masoud
+    res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/logInSignUp.html') //Win,Alireza
+    // res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/logInSignUp.html') //mac
 
 });
 
@@ -146,8 +149,9 @@ router.post('/logIn', passport.authenticate('localLogin', { failureRedirect: '/l
     if(!req.session.accessToken){
         console.log(req.session);
         console.log(req.url);
-        // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/dashboard/dashboard.html'); // Win
-        res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html'); //Mac
+        // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/dashboard/dashboard.html'); // Win,Masoud
+        res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/dashboard/dashboard.html'); // Win,Alireza
+        // res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html'); //Mac
         // res.redirect('/user/dashboard');
     }
     //return res.redirect('/user/dashboard')
@@ -162,8 +166,9 @@ router.get('/dashboard', isLogedIn, function (req, res) {
     // req.headers.referer = 'http/localhost:8181/user/dashboard';
     console.log('>>>>>>>>.dashboardddd');
     // res.set('Content-Type','text/html');
-    // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/dashboard/dashboard.html'); // Win
-    res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html');  //Mac
+    // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/dashboard/dashboard.html'); // Win,Masoud
+    res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/dashboard/dashboard.html'); // Win,Alireza
+    // res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html');  //Mac
     // res.render('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/dashboard/dashboard.ejs');
 });
 
