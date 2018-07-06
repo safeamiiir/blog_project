@@ -4,9 +4,8 @@
 function addSubmit() {
     var articleAdded = {};
     articleAdded.title = $('#art_title').val();
-    articleAdded.content = $('#art_content').val();
+    articleAdded.content = CKEDITOR.instances.art_content.getData();
     articleAdded.abstract = $('#art_abstract').val();
-    console.log(articleAdded.title,articleAdded.content,articleAdded.abstract );
     articleAdded.author = 'unknown';
     articleAdded.createDate = Date;
     articleAdded.lastEdit = Date;

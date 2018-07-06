@@ -232,6 +232,13 @@ router.get('/showart', isLogedIn, function (req,res) {
         }
     );
 
+});    // NOT USIIIIIIIIIIIIIIIIING !!!!!!!!!!!!!!!!!!!
+
+//.............................................. Logout ...........................................
+
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
 });
 
 
