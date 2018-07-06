@@ -208,6 +208,19 @@ router.get('/dashboard', isLogedIn, function (req, res) {
 //.............................................. ADD Article  ...........................................
 router.get('/addart', isLogedIn, function (req,res) {
     res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/addArticle.ejs');  //Mac
+});
+
+
+
+//.............................................. Show Article  ...........................................
+router.get('/showart', isLogedIn, function (req,res) {
+
+
+    Article.find({ author : req.user.userName }).sort("-createDate").exec(
+        function (err, art) {
+            console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+        }
+    );
 
 });
 

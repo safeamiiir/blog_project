@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- views/partials/head.ejs -->
+    <meta charset="UTF-8">
+    <title>Article</title>
+
+    <!-- CSS (load bootstrap from a CDN) -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/myCSS.css">
+    <script src="/js/articles.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+
+</head>
+<body class="container">
+
+<header>
+    <!-- views/partials/header.ejs -->
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <span class="glyphicon glyphicon-book text-success"></span>
+                    &nbsp Article Manager
+                </a>
+
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/add">Add</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+
+<main>
+    <div class="jumbotron">
+
+        <h2>  ADD Articles </h2>
+
+        <hr>
+        <div class="container">
+                <div class="form-group">
+                    <label for="comment">article Title :</label>
+                    <textarea class="form-control" rows="1" id="art_title"></textarea>
+                    <label for="comment" class="m-top-25">article Content:</label>
+                    <textarea class="form-control" rows="5" id="art_content"></textarea>
+                    <button class=" btn btn-success form-control m-top-10" onclick="addToDB()"> SUBMIT </button>
+                </div>
+        </div>
+
+
+    </div>
+</main>
+
+</body>
+</html>
