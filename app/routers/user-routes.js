@@ -200,14 +200,15 @@ router.get('/dashboard', isLogedIn, function (req, res) {
     // res.set('Content-Type','text/html');
     // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/dashboard/dashboard.html'); // Win,Masoud
     // res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/dashboard/dashboard.html'); // Win,Alireza
-    res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html');  //Mac
-    // res.render('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/dashboard/dashboard.ejs');
+    // res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html');  //Mac
+    res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.ejs');
 });
 
 
 //.............................................. ADD Article  ...........................................
 router.get('/addart', isLogedIn, function (req,res) {
-    res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/addArticle.ejs');  //Mac
+    // res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/addArticle.ejs');  //Mac
+    res.sendfile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/addArticle.html')
 });
 
 
@@ -215,10 +216,10 @@ router.get('/addart', isLogedIn, function (req,res) {
 //.............................................. Show Article  ...........................................
 router.get('/showart', isLogedIn, function (req,res) {
 
-
     Article.find({ author : req.user.userName }).sort("-createDate").exec(
         function (err, art) {
             console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+            res.send(art);
         }
     );
 

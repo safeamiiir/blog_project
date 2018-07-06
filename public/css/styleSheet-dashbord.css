@@ -232,5 +232,7 @@ div[class*="-stats"] span:hover {
     direction: rtl;
 }
 .name-maghale{
-    padding: 0.2rem 0 0.3rem 0 !important;
+    padding: 0.8rem 0 0 0 !important;
+    direction: rtl;
+    color: black;
 }

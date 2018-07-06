@@ -5,8 +5,9 @@ function addSubmit() {
     var articleAdded = {};
     articleAdded.title = $('#art_title').val();
     articleAdded.content = $('#art_content').val();
-    articleAdded.abstract = 'abstract';
-    articleAdded.author = 'amir';
+    articleAdded.abstract = $('#art_abstract').val();
+    console.log(articleAdded.title,articleAdded.content,articleAdded.abstract );
+    articleAdded.author = 'unknown';
     articleAdded.createDate = Date;
     articleAdded.lastEdit = Date;
     articleAdded.likes = 5;
@@ -22,5 +23,6 @@ function addToDB() {
         url : '/user/addingart'
     });
     console.log("Article From Client Has Been Sent");
-    // document.location.href = "http://localhost:8181/user";
+    document.location.href = "http://localhost:8181/user";
 }
+
