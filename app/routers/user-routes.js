@@ -201,14 +201,28 @@ router.get('/dashboard', isLogedIn, function (req, res) {
     // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/dashboard/dashboard.html'); // Win,Masoud
     // res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/dashboard/dashboard.html'); // Win,Alireza
     // res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html');  //Mac
-    Article.find({ author : req.user.userName }).sort("-createDate").exec(
-        function (err, art) {
-            console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
-            res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.ejs', {
-                art: art
-            })
-        }
-    );
+
+    Article.count({ author : req.user.userName },function(err, count) {
+        console.dir(err);
+        console.dir(count);
+
+        // if( count < 6) {
+        //     res.sendfile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html')
+        // }
+        // else {
+            Article.find({ author : req.user.userName }).sort("-createDate").exec(
+                function (err, art) {
+                    // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+                    res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.ejs', {
+                        art: art,
+                        artNum: count
+                    })
+                }
+            );
+        // }
+    });
+
+
 });
 
 
@@ -225,7 +239,7 @@ router.get('/showart', isLogedIn, function (req,res) {
 
     Article.find({ author : req.user.userName }).sort("-createDate").exec(
         function (err, art) {
-            console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+            // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
             res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.ejs', {
                 art: art
             })
