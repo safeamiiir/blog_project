@@ -249,10 +249,43 @@ router.get('/showart', isLogedIn, function (req,res) {
 });    // NOT USIIIIIIIIIIIIIIIIING !!!!!!!!!!!!!!!!!!!
 
 //.............................................. Logout ...........................................
-
 router.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
+});
+
+//.............................................. DeleteArticle ...........................................
+router.post('/deleteArticle', function (req,res) {
+
+    console.log("article Detele Clicked in server side");
+
+    // var date = new Date(Date.now());
+    // console.log(date);
+    //
+    // var article = new Article({
+    //     title : req.body.title,
+    //     content : req.body.content,
+    //     abstract : req.body.abstract,
+    //     author : req.user.userName,
+    //     createDate : date,
+    //     lastEdit : date,
+    //     likes : req.body.likes
+    //     // image : { Data : Buffer , contentType : String}
+    // });
+    // article.save(function (err,article) {
+    //     if (err) {
+    //         _.forEach(err.errors, function (val, key) {
+    //             console.log("valErr >>>>> " + key + " : " + err.errors[key].properties.type);
+    //         });
+    //         console.log(err);
+    //         return res.send(500, err.message);
+    //     }
+    //     else {
+    //         console.log("article has successfully Added To DB !");
+    //     }
+    //
+    // })
+
 });
 
 
