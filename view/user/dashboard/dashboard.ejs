@@ -114,11 +114,13 @@
                     <div class="row">
 
                         <% for (var i = 0; i < 6; i++ ){ %>
-                        <div class="col s12 m4">
+                        <div class="col s12 m12">
                             <div class="card blue-grey darken-1">
                                 <div class="card-content white-text">
-                                    <span class="card-title">نام مقاله</span>
-                                    <p> اینجا جایی برای نوشتن مذخرفات مغز شماست !</p>
+                                    <span class="card-title"> نام مقاله:  <%= art[i].title %>  </span>
+                                    خلاصه مقاله : <%= art[i].abstract %>
+                                    <br><br><br>
+                                    <%= art[i].content %>
                                 </div>
                                 <div class="card-action">
                                     <a href="#"><i class="material-icons">edit</i></a>
@@ -128,12 +130,8 @@
                         </div>
                         <% } %>
 
-
-
-
-
                         </div>
-                    </div>
+
                 </li>
             </ul>
         </div>

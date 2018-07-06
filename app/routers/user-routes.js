@@ -201,7 +201,14 @@ router.get('/dashboard', isLogedIn, function (req, res) {
     // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/dashboard/dashboard.html'); // Win,Masoud
     // res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/dashboard/dashboard.html'); // Win,Alireza
     // res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html');  //Mac
-    res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.ejs');
+    Article.find({ author : req.user.userName }).sort("-createDate").exec(
+        function (err, art) {
+            console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+            res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.ejs', {
+                art: art
+            })
+        }
+    );
 });
 
 
@@ -219,7 +226,9 @@ router.get('/showart', isLogedIn, function (req,res) {
     Article.find({ author : req.user.userName }).sort("-createDate").exec(
         function (err, art) {
             console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
-            res.send(art);
+            res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.ejs', {
+                art: art
+            })
         }
     );
 
