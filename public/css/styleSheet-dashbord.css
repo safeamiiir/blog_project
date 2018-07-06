@@ -18,153 +18,206 @@ header, main, footer {
     margin: 0 0 0 0!important;
 }
 @import url("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");
-body {
+body{
     background: #384051;
     color: rgba(255, 255, 255, 0.3);
+    font-family: IRANSans;
+}
+.display-block{
+    display: block!important;
+}
+.circle{
+    margin-left: 160px;
+}
+.float-right{
+    float: right!important;
+    margin: 0 0 0 0!important;
+}
+.panel {
+    width: 750px;
+    height: 400px;
+    background: #838CC7;
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+    border-radius: 6px;
+    overflow: hidden;
 }
 
-.credit {
-    width: 560px;
-    margin: 9em auto 3em auto;
-    text-align: center;
-    font-size: 0.75em;
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    height: 60px;
+    background: #fff;
 }
 
-a {
-    text-decoration: none;
-    color: #21A6EE;
+.title {
+    color: #5E6977;
+    font-weight: 500;
 }
 
-.ion-social-dribbble {
-    color: #EC4989;
+.calendar-views span {
+    font-size: 14px;
+    font-weight: 300;
+    color: #BDC6CF;
+    padding: 6px 14px;
+    border: 2px solid transparent;
+}
+.calendar-views span:hover {
+    border: 2px solid #BDC6CF;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.panel-body {
+    display: flex;
+    height: 340px;
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-basis: 25%;
+    padding: 39px 0px 41px 26px;
+}
+.category {
+    display: flex;
+    flex-direction: column;
+}
+.category span:first-child {
+    font-weight: 300;
+    font-size: 14px;
+    opacity: 0.6;
+    color: #fff;
+    margin-bottom: 6px;
+}
+.category span:last-child {
+    font-size: 32px;
+    font-weight: 300;
+    color: #fff;
 }
 
 .chart {
-    position: relative;
-    width: 560px;
-    height: 260px;
-    margin: 3em auto;
-    background-image: repeating-radial-gradient(center center, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 2px, transparent 2px, transparent 100%);
-    background-size: 29px 29px;
-    background-position: -11px 11px;
-}
-
-.chart::before,
-.chart::after {
-    display: inline-block;
-    font-size: 0.875em;
-}
-
-.chart::before {
-    display: inline-block;
-    position: absolute;
-    left: -3.5em;
-    top: -5px;
-    content: "$4k \a$3k \a$2k \a$1k \a 0";
-    white-space: pre;
+    width: 100%;
     height: 100%;
-    line-height: 4.2;
-    text-align: right;
-}
-
-.chart::after {
-    content: "07:00h 21:00h";
-    width: 110%;
-    margin-left: -5%;
-    word-spacing: 36.5em;
-    padding-top: 0.5em;
-}
-
-.dataset {
-    fill-opacity: 0.8;
-    -webkit-filter: url(#dropshadow);
-    filter: url(#dropshadow);
-}
-
-#dataset-1 {
-    fill: #50E3C2;
-}
-
-#dataset-2 {
-    fill: #21A6EE;
-}
-
-#dataset-3 {
-    fill: #807CCC;
-}
-
-.chart button {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
     position: relative;
-    top: -0.75em;
-    border: none;
-    background: rgba(255, 255, 255, 0.5);
-    color: #384051;
-    border-radius: 5px;
-    padding: 0.25em 1em;
-    font-size: 1em;
-    float: right;
-    cursor: pointer;
-}
-.chart button:focus {
-    outline: none;
 }
 
-@-webkit-keyframes raise {
-    0% {
-        -webkit-transform: scaleY(0.01);
-        transform: scaleY(0.01);
-    }
-    75% {
-        -webkit-transform: scaleY(1.1);
-        transform: scaleY(1.1);
-    }
-    100% {
-        -webkit-transform: scaleY(1);
-        transform: scaleY(1);
-    }
+.operating-systems {
+    display: flex;
+    justify-content: space-between;
+    width: 215px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+span[class*="-os"] {
+    font-size: 14px;
+    font-weight: 300;
+    font-size: 14px;
+    color: #c3c6e4;
+}
+span[class*="-os"] span {
+    width: 9px;
+    height: 9px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 9px;
+}
+.android-os span {
+    background: #80B354;
+}
+.ios-os span {
+    background: #F5A623;
+}
+.windows-os span {
+    background: #F8E71C;
+}
+
+div[class*="-stats"] {
+    position: absolute;
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    opacity: 0;
+    animation: showstats 0.6s linear 1.8s;
+    animation-fill-mode: forwards;
+}
+
+div[class*="-stats"] span {
+    height: 12px;
+    width: 12px;
+    margin: 0 7px;
+    background-color: #fff;
+    border: 2px solid transparent;
+    border-radius: 50%;
+}
+
+div[class*="-stats"] span:hover {
+    transform: scale(1.4) rotate(0.02deg);
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.android-stats {
+    bottom: 155px;
+    right: 230px;
+}
+.android-stats span:hover {
+    background: #80B354;
+}
+
+.ios-stats {
+    bottom: 83px;
+    left: 133px;
+}
+.ios-stats span:hover {
+    background: #F5A623;
+}
+
+.windows-stats {
+    bottom: 133px;
+    right: 62px;
+}
+.windows-stats span:hover {
+    background: #F8E71C;
+}
+
+.dataset-1 {
+    animation: raise .8s linear 1;
+    transform-origin: bottom;
+}
+.dataset-2 {
+    animation: raise 1.6s linear 1;
+    transform-origin: bottom;
+}
+.dataset-3 {
+    animation: raise 1.8s linear 1;
+    transform-origin: bottom;
+}
+
+.lines {
+    opacity: 0;
+    animation: showlines 0.6s linear 1.6s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes showlines {
+    to { opacity: 0.2; }
+}
+
+@keyframes showstats {
+    to { opacity: 1; }
 }
 
 @keyframes raise {
-    0% {
-        -webkit-transform: scaleY(0.01);
-        transform: scaleY(0.01);
-    }
-    75% {
-        -webkit-transform: scaleY(1.1);
-        transform: scaleY(1.1);
-    }
-    100% {
-        -webkit-transform: scaleY(1);
-        transform: scaleY(1);
-    }
-}
-.dataset {
-    -webkit-transform-origin: bottom;
-    transform-origin: bottom;
-    -webkit-transform: scaleY(0.01);
-    transform: scaleY(0.01);
-    opacity: 0.5;
-}
-
-.loaded .dataset {
-    opacity: 1;
-    -webkit-animation: raise 0.5s ease 0.2s forwards;
-    animation: raise 0.5s ease 0.2s forwards;
-}
-
-.loaded #dataset-1 {
-    -webkit-animation-delay: 0.2s;
-    animation-delay: 0.2s;
-}
-
-.loaded #dataset-2 {
-    -webkit-animation-delay: 0.1s;
-    animation-delay: 0.1s;
-}
-
-.loaded #dataset-3 {
-    -webkit-animation-delay: 0s;
-    animation-delay: 0s;
+    0% { transform: scaleY(0.01); }
+    75% { transform: scaleY(1.1); }
+    100% { transform: scaleY(1); }
 }
 #staggered-test li{
     opacity: 0;
@@ -172,5 +225,12 @@ a {
 .dir{
     direction: rtl;
     float: right !important;
-    margin:30px 30%;
+    margin:30px 5%;
+    display: inline;
+}
+.title-edit{
+    direction: rtl;
+}
+.name-maghale{
+    padding: 0.2rem 0 0.3rem 0 !important;
 }
