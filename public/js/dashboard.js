@@ -1,11 +1,17 @@
 /**
  * Created by amir on 7/6/18.
  */
-$('#delete').on('click', function () {
-    console.log("deleted Fileeeee Pressed");
+function detectArticle(artId) {
+
+    var articleRemoved = {};
+    articleRemoved.id = artId;
+
+    // alert(articleAdded.title + articleAdded.content);
+
+    console.log("deleted Fileeeee Pressed is :" + artId );
     $.ajax({
         type: "POST",
-        url: "/user/deleteArticle"
-        // data: valueOfInput,
+        url: "/user/deleteArticle",
+        data: articleRemoved
     })
-});
+}

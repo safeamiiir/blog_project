@@ -206,10 +206,6 @@ router.get('/dashboard', isLogedIn, function (req, res) {
         console.dir(err);
         console.dir(count);
 
-        // if( count < 6) {
-        //     res.sendfile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html')
-        // }
-        // else {
             Article.find({ author : req.user.userName }).sort("-createDate").exec(
                 function (err, art) {
                     // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
@@ -256,36 +252,12 @@ router.get('/logout', function(req, res){
 
 //.............................................. DeleteArticle ...........................................
 router.post('/deleteArticle', function (req,res) {
+    
+    console.log("article Detele Clicked in server side & its ID is :" , req.body.id , " \n\n");
 
-    console.log("article Detele Clicked in server side");
-
-    // var date = new Date(Date.now());
-    // console.log(date);
-    //
-    // var article = new Article({
-    //     title : req.body.title,
-    //     content : req.body.content,
-    //     abstract : req.body.abstract,
-    //     author : req.user.userName,
-    //     createDate : date,
-    //     lastEdit : date,
-    //     likes : req.body.likes
-    //     // image : { Data : Buffer , contentType : String}
-    // });
-    // article.save(function (err,article) {
-    //     if (err) {
-    //         _.forEach(err.errors, function (val, key) {
-    //             console.log("valErr >>>>> " + key + " : " + err.errors[key].properties.type);
-    //         });
-    //         console.log(err);
-    //         return res.send(500, err.message);
-    //     }
-    //     else {
-    //         console.log("article has successfully Added To DB !");
-    //     }
-    //
-    // })
-
+    Article.deleteOne({ _id : req.body.id },function(err, del) {
+        console.dir(del);
+    });
 });
 
 
