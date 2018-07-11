@@ -24,4 +24,3 @@ function addToDB() {
     console.log("Article From Client Has Been Sent");
     document.location.href = "http://localhost:8181/user";
 }
-

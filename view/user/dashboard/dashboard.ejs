@@ -109,7 +109,7 @@
     </div>
     <div class="row">
         <div class="col 12 dir">
-            <a href="#!" class="btn purple lighten-3" onclick="Materialize.showStaggeredList('#staggered-test')">نمایش لیست مقالات اخیر</a>
+            <a href="#" class="btn purple lighten-3" onclick="Materialize.showStaggeredList('#staggered-test')">نمایش لیست مقالات اخیر</a>
             <ul id="staggered-test">
                 <li>
                     <div class="row">
@@ -125,8 +125,8 @@
 
                                 </div>
                                 <div class="card-action">
-                                    <a href="#" id="edit"><i class="material-icons">edit</i></a>
-                                    <a href="#" id="delete" onclick="detectArticle('<%=art[i]._id%>')"><i class="material-icons">delete_forever</i></a>
+                                    <a href="#" id="edit" onclick="detectArticleEdit('<%=art[i]._id%>')"><i class="material-icons">edit</i></a>
+                                    <a href="#" id="delete" onclick="detectArticleRemove('<%=art[i]._id%>')"><i class="material-icons">delete_forever</i></a>
                                 </div>
                             </div>
                         </div>
