@@ -24,3 +24,27 @@ function addToDB() {
     console.log("Article From Client Has Been Sent");
     document.location.href = "http://localhost:8181/user";
 }
+
+function editSubmit() {
+    var articleEdited = {};
+    articleEdited.title = $('#art_title').val();
+    articleEdited.content = CKEDITOR.instances.art_content.getData();
+    articleEdited.abstract = $('#art_abstract').val();
+    articleEdited.author = 'unknown';
+    articleEdited.createDate = Date;
+    articleEdited.lastEdit = Date;
+    articleEdited.likes = 5;
+    // alert(articleAdded.title + articleAdded.content);
+    return articleEdited;
+}
+
+function editInDB() {
+    $.ajax({
+        type: 'POST',
+        data: editSubmit(),
+        dataType : "json",
+        url : '/user/editingart'
+    });
+    console.log("Article Client Side Has Been Edited");
+    document.location.href = "http://localhost:8181/user/dashboard";
+}

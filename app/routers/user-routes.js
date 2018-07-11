@@ -16,6 +16,7 @@ const router = express.Router();
 
 ////////////////////////////////// Needed Vars ///////////////////////////////////////
 var arttticle = [];
+var curentArticleId = 0;
 ////////////////////////////////// Needed Vars ///////////////////////////////////////
 
 
@@ -265,7 +266,7 @@ router.post('/deleteArticle', function (req,res) {
 router.post('/editArticle', function(req, res, next) {
 
     console.log("article edit Clicked in server side & its ID is :" , req.body.id , " \n\n");
-
+    curentArticleId = req.body.id;
     Article.findOne({ _id : req.body.id },function(err, arttt) {
         console.log(" \n\n\n\n Heeeey ! Look At The Data : \n" , arttt , " \n\n\n\n");
         res.send(200);
@@ -284,6 +285,30 @@ router.get('/editingArticle', isLogedIn, function (req, res) {
             author : arttticle.author},
         success: true
     });
+});
+
+router.post('/editingart', function (req,res) {
+
+    console.log("add-article");
+
+    var date = new Date(Date.now());
+
+    console.log( "curentArticleId Issss ::::" , curentArticleId);
+
+    Article.findByIdAndUpdate(curentArticleId, {
+        title : req.body.title,
+        content : req.body.content,
+        abstract : req.body.abstract,
+        author : req.user.userName,
+        lastEdit : date,
+        likes : req.body.likes
+    }, function(err, up) {
+        if (err) throw err;
+
+        // we have the updated user returned to us
+        console.log(up);
+    });
+
 });
 
 //.............................................. Logout ...........................................
