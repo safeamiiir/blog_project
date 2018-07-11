@@ -14,6 +14,11 @@ const router = express.Router();
 // var LocalStrategy = require('passport-local').Strategy;
 // var router = express.Router();
 
+////////////////////////////////// Needed Vars ///////////////////////////////////////
+var arttticle = [];
+////////////////////////////////// Needed Vars ///////////////////////////////////////
+
+
 passport.use('localLogin', new LocalStrategy({
     usernameField: 'userName',
     passwordField: 'password'
@@ -261,21 +266,23 @@ router.post('/editArticle', function(req, res, next) {
 
     console.log("article edit Clicked in server side & its ID is :" , req.body.id , " \n\n");
 
-    Article.findOne({ _id : req.body.id },function(err, art) {
-        console.log(" \n\n\n\n Heeeey ! Look At The Data : \n" , art , " \n\n\n\n");
+    Article.findOne({ _id : req.body.id },function(err, arttt) {
+        console.log(" \n\n\n\n Heeeey ! Look At The Data : \n" , arttt , " \n\n\n\n");
         res.send(200);
-        router.get('/editingArticle', isLogedIn, function (req, res) {
-            console.log("Here in GETTTT ");
-            res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/editArticle.ejs', {
-                art : { title: art.title,
-                    abstract: art.abstract,
-                    content: art.content},
-                success: true
-            });
-        });
+        arttticle.title = arttt.title;
+        arttticle.abstract = arttt.abstract;
+        arttticle.content = arttt.content;
+
     });
 });
-
+router.get('/editingArticle', isLogedIn, function (req, res) {
+    res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/editArticle.ejs', {
+        art : { title: arttticle.title,
+            abstract: arttticle.abstract,
+            content: arttticle.content},
+        success: true
+    });
+});
 
 //.............................................. Logout ...........................................
 router.get('/logout', function(req, res){
