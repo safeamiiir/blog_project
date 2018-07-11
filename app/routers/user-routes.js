@@ -272,14 +272,16 @@ router.post('/editArticle', function(req, res, next) {
         arttticle.title = arttt.title;
         arttticle.abstract = arttt.abstract;
         arttticle.content = arttt.content;
-
+        arttticle.author = arttt.author;
     });
 });
 router.get('/editingArticle', isLogedIn, function (req, res) {
     res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/editArticle.ejs', {
-        art : { title: arttticle.title,
+        art : {
+            title: arttticle.title,
             abstract: arttticle.abstract,
-            content: arttticle.content},
+            content: arttticle.content,
+            author : arttticle.author},
         success: true
     });
 });
