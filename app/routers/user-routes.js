@@ -257,56 +257,25 @@ router.post('/deleteArticle', function (req,res) {
 
 //.............................................. EditArticle ...........................................
 //
-router.post('/editArticle', function (req,res) {
+router.post('/editArticle', function(req, res, next) {
 
     console.log("article edit Clicked in server side & its ID is :" , req.body.id , " \n\n");
 
     Article.findOne({ _id : req.body.id },function(err, art) {
-        console.log(" \n\n\n\n" , art , " \n\n\n\n");
-
-        res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/editArticle.ejs',{
-            art : { title: art.title,
-                abstract: art.abstract,
-                content: art.content}
-                   });
-        console.log("Done whitOut Rendering  ?!?!");
+        console.log(" \n\n\n\n Heeeey ! Look At The Data : \n" , art , " \n\n\n\n");
+        res.send(200);
+        router.get('/editingArticle', isLogedIn, function (req, res) {
+            console.log("Here in GETTTT ");
+            res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/editArticle.ejs', {
+                art : { title: art.title,
+                    abstract: art.abstract,
+                    content: art.content},
+                success: true
+            });
+        });
     });
-
-
 });
 
-router.get('/editingArticle',function (req,res) {
-
-    console.log("article edit Clicked in server side & its ID is :" , req.url.substr(19) , " \n\n");
-    // Article.findOne({ _id : 1 },function(err, art) {
-    //     if (art){
-    //         console.log(" \n\n\n\n arttttticle is  : " , art.title , " \n\n\n\n");
-    //
-    //         res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/editArticle.ejs',{
-    //             art : { title: "tsting title",
-    //                 abstract: "tsting Abstract",
-    //                 content: "tstingContent!!!"}
-    //         });
-    //     }
-    //
-    //
-    // });
-
-    // Article.findOne({ _id : req.body.id },function(err, art) {
-    //     console.log(" \n\n\n\n" , art , " \n\n\n\n");
-    //     res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/editArticle.ejs',{
-    //         art : { title: req.body.title,
-    //             abstract: req.body.abstract,
-    //             content: req.body.content}
-    //     });
-    // });
-
-     // res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/editArticle.ejs',{
-     //     art : { title: "tsting title",
-     //            abstract: "tsting Abstract",
-     //            content: "tstingContent!!!"}
-     // });
-});
 
 //.............................................. Logout ...........................................
 router.get('/logout', function(req, res){

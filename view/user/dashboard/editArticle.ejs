@@ -45,7 +45,7 @@
 <div class="container">
     <div class="row">
         <div class="col s10 m10 offset-m1 card-pane cke_rtl" style="margin-top: 100px">
-
+            <% if(success){ %>
             <form>
                 <div class="input-field col s12">
                     <label for="art_title" style="margin-left:88%">نام مقاله</label>
@@ -66,7 +66,7 @@
                 <a class="btn waves-effect waves-light blue lighten-4 right" target="_blank" onclick="addToDB()" style="margin: 10px">ارسال</a>
             </form>
         </div>
-
+        <% }%>
 
     </div>
 </div>
