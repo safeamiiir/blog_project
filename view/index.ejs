@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blog</title>
+    <link rel="stylesheet" href="/css/styleSheet.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+<body>
+<nav role="navigation" class="navbar-fix">
+    <div class="nav-wrapper blue-grey lighten-5">
+        <a href="/" class="brand-logo center blue-grey-text darken-4">
+            <div class="avatar">
+                <img src="/img/logInPic.jpg">
+            </div>
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#"><i class="material-icons blue-grey-text darken-4">search</i></a></li>
+            <li><a href="http://localhost:8181/user"><i class="material-icons blue-grey-text darken-4">person_add</i></a></li>
+        </ul>
+    </div>
+</nav>
+<div class="section no-pad-bot" >
+    <div class="container">
+        <div class="row">
+            <div class="col s12 btn-categuris">
+                <a class="waves-effect waves-light btn blue-grey lighten-3 margin-left"><i class="material-icons right">cloud</i>فضای ابری</a>
+                <a class="waves-effect waves-light btn blue-grey lighten-3"><i class="material-icons right">airplay</i>دسکتاپ</a>
+                <a class="waves-effect waves-light btn blue-grey lighten-3"><i class="material-icons right">android</i>اندروید</a>
+                <a class="waves-effect waves-light btn blue-grey lighten-3"><i class="material-icons right">casino</i>بازی ها</a>
+                <a class="waves-effect waves-light btn blue-grey lighten-3"><i class="material-icons right">code</i>کد نویسی</a>
+                <a class="waves-effect waves-light btn blue-grey lighten-3"><i class="material-icons right">local_library</i>خواندنی ها</a>
+                <a class="waves-effect waves-light btn blue-grey lighten-3"><i class="material-icons right">tap_and_play</i>موبایل</a>
+            </div>
+        </div>
+
+
+        <% if(artNum == 0) {%>
+
+        <div class="row">
+            <div class="col s12">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">  نویسنده اولین مقاله سایت ما باشید! <i class="material-icons left">more_vert</i></span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i>جایی برای نوشتن</span>
+                        <p> اولین مقاله را شما بنویسید! </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% } %>
+
+
+        <% if(artNum == 1) {%>
+
+
+        <div class="row">
+
+            <% var index = 0; %>
+
+            <div class="col s12">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <% } %>
+
+
+
+        <% if(artNum == 2) {%>
+
+
+        <div class="row">
+
+            <% var index = 0; %>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %> <i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s8">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %> <i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <% } %>
+
+        <% if(artNum == 3) {%>
+
+
+        <div class="row">
+
+            <% var index = 0; %>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %> <i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %> <i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% } %>
+
+
+        <% if(artNum == 4) {%>
+
+
+        <div class="row">
+
+            <% var index = 0; %>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %> <i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %> <i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <div class="col s12">
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="/img/blog-img.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                            <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                            <p> <%= art[index].abstract %> </p>
+                            <% index ++;%>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <% } %>
+
+
+        <% if(artNum == 5) {%>
+
+
+        <div class="row">
+
+            <% var index = 0; %>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %> <i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %> <i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <div class="col s4">
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="/img/blog-img.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                            <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                            <p> <%= art[index].abstract %> </p>
+                            <% index ++;%>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s8">
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="/img/blog-img.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                            <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                            <p> <%= art[index].abstract %> </p>
+                            <% index ++;%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% } %>
+
+
+        <% if(artNum == 6) {%>
+
+
+        <div class="row">
+
+            <% var index = 0; %>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %> <i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %> <i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <div class="col s4">
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="/img/blog-img.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                            <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                            <p> <%= art[index].abstract %> </p>
+                            <% index ++;%>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s8">
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="/img/blog-img.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                            <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                            <p> <%= art[index].abstract %> </p>
+                            <% index ++;%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <div class="col s12">
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="/img/blog-img.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                            <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                            <p> <%= art[index].abstract %> </p>
+                            <% index ++;%>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <% } %>
+
+
+        <% if(artNum >= 7) {%>
+
+
+        <div class="row">
+
+            <% var index = 0; %>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %> <i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div class="card small">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/img/blog-img.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %> <i class="material-icons left">more_vert</i></span>
+                        <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                        <p> <%= art[index].abstract %> </p>
+                        <% index ++;%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <div class="col s4">
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="/img/blog-img.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                            <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                            <p> <%= art[index].abstract %> </p>
+                            <% index ++;%>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s8">
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="/img/blog-img.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                            <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                            <p> <%= art[index].abstract %> </p>
+                            <% index ++;%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <div class="col s8">
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="/img/blog-img.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                            <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                            <p> <%= art[index].abstract %> </p>
+                            <% index ++;%>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s4">
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="/img/blog-img.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"> <%= art[index].title %><i class="material-icons left">more_vert</i></span>
+                            <p><a href="/post/<%= art[index]._id %>">بخوانید</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons left">close</i><%= art[index].title %></span>
+                            <p> <%= art[index].abstract %> </p>
+                            <% index ++;%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% } %>
+
+    </div>
+</div>
+
+
+<!--فوتر صفحه-->
+<!--<footer class="page-footer">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col l6 offset-s12  s12">-->
+                <!--<h5 class="white-text">بخوانید</h5>-->
+                <!--<ul >-->
+                    <!--<li class="display-inline"><a class="grey-text text-lighten-3" href="#!">بخوانید</a></li>-->
+                    <!--<li class="display-inline"><a class="grey-text text-lighten-3" href="#!">بخوانید</a></li>-->
+                    <!--<li class="display-inline"><a class="grey-text text-lighten-3" href="#!">بخوانید</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="col l6 s12">-->
+                <!--<h5 class="white-text">محل فوتر</h5>-->
+                <!--<p class="grey-text text-lighten-4">کانتنت های مورد نظر در فوتر </p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="footer-copyright">-->
+        <!--<div class="container">-->
+            <!--© گروه مکتب-->
+            <!--<a class="grey-text text-lighten-4 right" href="#!">پیوند</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</footer>-->
+<script src="js/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</body>
+</html>

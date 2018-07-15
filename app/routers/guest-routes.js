@@ -12,9 +12,24 @@ router.get("/",function(req,res){
     //     res.render('../view/index.ejs',{articles : articles});
     // });
     // res.send("guest");
-    // res.sendFile("E:/Ducuments/Makab/Blog_Project/BlogNode/view/index.html"); //win,Masoud
-    // res.sendFile("C:/Users/Alireza/Desktop/Blog_Project/view/index.html"); //win,Alireza
-    res.sendFile("/Users/amir/WebstormProjects/Blog_Project/view/index.html"); //mac
+
+
+    Article.count(function(err, count) {
+        console.log("Number Of Articles : ",count);
+
+        Article.find().sort("-createDate").limit(7).exec(
+            function (err, art) {
+                // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+                // res.render("E:/Ducuments/Makab/Blog_Project/BlogNode/view/index.ejs"); //win,Masoud
+                // res.render("C:/Users/Alireza/Desktop/Blog_Project/view/index.ejs"); //win,Alireza
+                res.render("/Users/amir/WebstormProjects/Blog_Project/view/index.ejs", {
+                    art: art,
+                    artNum: count
+                })
+            }
+        );
+
+    });
 });
 
 router.get("/post/:postID",function(req,res){
@@ -44,9 +59,6 @@ router.get("/profile", function (req,res) {
     res.send( " مقاله ای جهت نمایش موجود نیست  ");
 });
 router.get("/profile/:userName" , function(req , res){
-    // res.render("E:/Ducuments/Makab/Blog_Project/BlogNode/view/profile.ejs"); // Win,Masoud
-    // res.render("C:/Users/Alireza/Desktop/Blog_Project/view/profile.ejs"); // Win,Alireza
-
     console.log("userName : ",req.params.userName);
     Article.count({ author : req.params.userName },function(err, count) {
         console.log("Number Of Articles : ",count);
@@ -54,6 +66,8 @@ router.get("/profile/:userName" , function(req , res){
         Article.find({ author : req.params.userName }).sort("-createDate").exec(
             function (err, art) {
                 console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+                // res.render("E:/Ducuments/Makab/Blog_Project/BlogNode/view/profile.ejs"); // Win,Masoud
+                // res.render("C:/Users/Alireza/Desktop/Blog_Project/view/profile.ejs"); // Win,Alireza
                 res.render('/Users/amir/WebstormProjects/Blog_Project/view/profile.ejs', {
                     art: art,
                     userName: req.params.userName,
@@ -61,7 +75,6 @@ router.get("/profile/:userName" , function(req , res){
                 })
             }
         );
-        // }
     });
 });
 module.exports = router;
