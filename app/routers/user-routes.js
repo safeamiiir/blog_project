@@ -66,10 +66,10 @@ passport.deserializeUser(function (id, done) {
 
 function isLogedIn(req, res, next) {
     if (req.isAuthenticated()) {
-        console.log("isAuthenticated")
+        console.log("isAuthenticated");
         return next();
     } else {
-        console.log("isnotAuthenticated")
+        console.log("isnotAuthenticated");
         return res.redirect('logInSignUp');
     }
 }
@@ -91,7 +91,6 @@ router.get('/logInSignUp', function (req, res) {
     // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/logInSignUp.html') //Win,Masoud
     // res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/logInSignUp.html') //Win,Alireza
     res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/logInSignUp.html') //Mac
-
 
 });
 
@@ -264,7 +263,7 @@ router.post('/deleteArticle', function (req,res) {
 
 //.............................................. EditArticle ...........................................
 //
-router.post('/editArticle', function(req, res, next) {
+router.post('/editArticle',  function(req, res, next) {
 
     console.log("article edit Clicked in server side & its ID is :" , req.body.id , " \n\n");
     curentArticleId = req.body.id;
@@ -313,7 +312,7 @@ router.post('/editingart', function (req,res) {
 });
 
 //.............................................. Add Comment ...........................................
-router.post('/addingcom', function (req, res) {
+router.post('/addingcom', isLogedIn, function (req, res) {
     console.log("add-comment");
     var date = new Date(Date.now());
 
