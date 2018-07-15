@@ -18,5 +18,5 @@ function addCommentToDB(artID) {
         url : '/user/addingcom'
     });
     // console.log("Article From Client Has Been Sent");
-    // document.location.href = "http://localhost:8181/user";
+    document.location.href = "http://localhost:8181/post/" + artID;
 }

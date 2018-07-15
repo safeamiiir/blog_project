@@ -66,6 +66,28 @@
             </div>
         </div>
     </div>
+    <% for ( var i = 0; i < cmtNum; i++) {%>
+    <div class="row">
+        <div class="col s12 auther1">
+            <div class="col s12 m12 ">
+                <div class="card-panel white  z-depth-2 ">
+                    <div class="row valign-wrapper">
+                        <div class="col s1">
+                            <img src="images/blog.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                        </div>
+                        <div class="col s10">
+              <span class="black-text">
+                  <h5><%= com[i].author %> :</h5>
+                  <%= com[i].content %>
+              </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+
     <div class="row right-align">
         <div class="card col s6 offset-m6 white lighten-6 z-depth-1">
 
