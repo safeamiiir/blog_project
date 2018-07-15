@@ -36,7 +36,7 @@
                         </div>
                         <div class="col s10">
               <span class="black-text">
-                  <h5>نام کاربری</h5>
+                  <h5><%= userName %></h5>
                  بیو در رابطه با نویسنده
               </span>
                         </div>
@@ -45,6 +45,8 @@
             </div>
         </div>
     </div>
+
+    <% for (var i = 0; i < artNum; i++ ) {%>
     <div class="row">
         <div class="col s12 m12 l12">
             <div class="card">
@@ -53,9 +55,11 @@
                     <span class="card-title">Card Title</span>
                 </div>
                 <div class="card-content direction-matlab">
-                    <p>متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت
-                        پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت
-                        پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت </p>
+                    <a href="/post/<%= art[i]._id %>"><p class="card-title"> عنوان مقاله : <b> <%= art[i].title %> </b> </p></a>
+                    <p> خلاصه مقاله : <%= art[i].abstract %></p>
+                    <br><br><br>
+                    <p> متن مقاله : <%= art[i].content %></p>
+
                 </div>
                 <div class="card-action">
                     <a href="#">#tag</a>
@@ -66,48 +70,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col s12 m12 l12">
-            <div class="card">
-                <div class="card-image">
-                    <img src="/img/blog-img.jpg" height="300px">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content direction-matlab">
-                    <p>متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت
-                        پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت
-                        پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت </p>
-                </div>
-                <div class="card-action">
-                    <a href="#">#tag</a>
-                    <a href="#">#tag</a>
-                    <a href="#">#tag</a>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12 m12 l12">
-            <div class="card">
-                <div class="card-image">
-                    <img src="/img/blog-img.jpg" height="300px">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content direction-matlab">
-                    <p>متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت
-                        پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت
-                        پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت متن چرت پرت </p>
-                </div>
-                <div class="card-action">
-                    <a href="#">#tag</a>
-                    <a href="#">#tag</a>
-                    <a href="#">#tag</a>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    <% } %>
 </div>
 <script src="/js/jquery-3.3.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
