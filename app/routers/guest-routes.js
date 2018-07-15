@@ -21,7 +21,7 @@ router.get("/post/:postID",function(req,res){
     // res.render("C:/Users/Alireza/Desktop/Blog_Project/view/postPage.ejs"); // Win,Alireza
     console.log(" Post ID :",req.params.postID);
     Article.findOne({ _id : req.params.postID },function(err, art) {
-        console.log(" \n\n\n\n Heeeey ! Look At The Data : \n" , art , " \n\n\n\n");
+        // console.log(" \n\n\n\n Heeeey ! Look At The Data : \n" , art , " \n\n\n\n");
         res.render("/Users/amir/WebstormProjects/Blog_Project/view/postPage.ejs", {
             art:art
         });

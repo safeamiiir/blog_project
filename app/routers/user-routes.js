@@ -1,5 +1,6 @@
 const User = require('../models/users');
 const Article = require('../models/articles');
+const Comment = require('../models/comments');
 const express = require('express');
 const _ = require('lodash');
 const passport = require('passport');
@@ -310,6 +311,39 @@ router.post('/editingart', function (req,res) {
     });
 
 });
+
+//.............................................. Add Comment ...........................................
+router.post('/addingcom', function (req, res) {
+    console.log("add-comment");
+    var date = new Date(Date.now());
+
+    console.log(" Content : ", req.body.content);
+    console.log(" author : ", req.user.userName);
+    console.log(" Date : ", date);
+    console.log(" Post ID : ",req.body.articleId );
+    var comment = new Comment({
+        content: req.body.content,
+        author: req.user.userName,
+        articleId : req.body.articleId,
+        createDate: date
+    });
+
+    comment.save(function (err, cmnt) {
+        if (err) {
+            _.forEach(err.errors, function (val, key) {
+                console.log("valErr >>>>> " + key + " : " + err.errors[key].properties.type);
+            });
+            console.log(err);
+            return res.send(500, err.message);
+        } else {
+            // res.redirect('dashboard')
+            console.log(cmnt);
+        }
+    });
+
+
+});
+
 
 //.............................................. Logout ...........................................
 router.get('/logout', function(req, res){
