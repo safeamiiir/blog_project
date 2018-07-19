@@ -21,6 +21,27 @@ var curentArticleId = 0;
 ////////////////////////////////// Needed Vars ///////////////////////////////////////
 
 
+router.get("/index",isLogedIn,function(req,res){
+
+    Article.count(function(err, count) {
+        console.log("Number Of Articles : ",count);
+
+        Article.find().sort("-createDate").exec(
+            function (err, art) {
+                // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+                // res.render("E:/Ducuments/Makab/Blog_Project/BlogNode/view/index.ejs"); //win,Masoud
+                // res.render("C:/Users/Alireza/Desktop/Blog_Project/view/index.ejs"); //win,Alireza
+                res.render("/Users/amir/WebstormProjects/Blog_Project/view/indexUser.ejs", {
+                    art: art,
+                    artNum: 7,
+                    userName:req.user.userName
+                })
+            }
+        );
+
+    });
+});
+
 
 
 passport.use('localLogin', new LocalStrategy({

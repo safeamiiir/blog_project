@@ -5,14 +5,7 @@ const Comment = require('../models/comments');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-router.get("/",function(req,res){
-    // Article.find({},function(err,articles){
-    //     return articles;
-    // }).limit(9).sort({createDate : -1}).then(function(articles){
-    //     res.render('../view/index.ejs',{articles : articles});
-    // });
-    // res.send("guest");
-
+router.get("/", function(req,res){
 
     Article.count(function(err, count) {
         console.log("Number Of Articles : ",count);
