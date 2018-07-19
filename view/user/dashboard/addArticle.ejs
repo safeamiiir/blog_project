@@ -1,60 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <!-- views/partials/head.ejs -->
     <meta charset="UTF-8">
-    <title>Article</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/styleSheet.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styleSheet-dashbord.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
 
-    <!-- CSS (load bootstrap from a CDN) -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/myCSS.css">
-    <script src="/js/articles.js"></script>
-    <script src="/js/jquery-3.3.1.min.js"></script>
-
+    <title>addArticle</title>
 </head>
-<body class="container">
-
-<header>
-    <!-- views/partials/header.ejs -->
-
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <span class="glyphicon glyphicon-book text-success"></span>
-                    &nbsp Article Manager
-                </a>
-
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/add">Add</a></li>
-                </ul>
+<body>
+<nav role="navigation" class="navbar-fix">
+    <div class="nav-wrapper blue-grey lighten-5">
+        <a href="http://localhost:8181/" class="brand-logo center blue-grey-text darken-4">
+            <div class="avatar">
+                <img src="/img/logInPic.jpg">
             </div>
-
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#" data-activates="slide-out" class="button-collapse right display-block"><i class="material-icons blue-grey-text darken-4">menu</i></a></li>
+            <li><a href="sass.html"><i class="material-icons blue-grey-text darken-4">search</i></a></li>
+        </ul>
+    </div>
+</nav>
+<ul id="slide-out" class="side-nav">
+    <li><div class="user-view">
+        <div class="background">
+            <img src="/img/blog-img.jpg">
         </div>
-    </nav>
-</header>
+        <a href="/user/dashboard"><img class="circle" src="/img/blog.jpg"></a>
+        <%if(artNum == 0) {%><a href="/user/dashboard"><span class="white-text name">نام کاربری</span></a><%}%>
+        <%if(artNum > 0) {%><a href="/user/dashboard"><span class="white-text name"><%= art[0].author  %></span></a><%}%>
+        <span class="white-text email"> </span>
+    </div></li>
+    <li><a href="postPage.html"><i class="material-icons float-right">format_align_right</i>ارسال مقاله</a></li>
+    <li><a href="#!"><i class="material-icons float-right">edit</i>ویرایش مقاله</a></li>
+    <li><a href="#!"><i class="material-icons float-right">trending_up</i>آمار بازید مقاله</a></li>
+    <li><a href="#!" ><i class="material-icons float-right">settings</i>تنظیمات</a></li>
+    <li><a href="http://localhost:8181/user/logout" ><i class="material-icons float-right">exit_to_app</i>خروج</a></li>
 
+    <li><div class="divider"></div></li>
+</ul>
+<div class="container">
+    <div class="row">
+        <div class="col s10 m10 offset-m1 card-pane cke_rtl" style="margin-top: 100px">
 
-<main>
-    <div class="jumbotron">
-
-        <h2>  ADD Articles </h2>
-
-        <hr>
-        <div class="container">
-                <div class="form-group">
-                    <label for="comment">article Title :</label>
-                    <textarea class="form-control" rows="1" id="art_title"></textarea>
-                    <label for="comment" class="m-top-25">article Content:</label>
-                    <textarea class="form-control" rows="5" id="art_content"></textarea>
-                    <button class=" btn btn-success form-control m-top-10" onclick="addToDB()"> SUBMIT </button>
+            <form>
+                <div class="input-field col s12">
+                    <label for="art_title" style="margin-left:88%">نام مقاله</label>
+                    <textarea id="art_title" class="materialize-textarea name-maghale"></textarea>
                 </div>
+                <div class="input-field col s12">
+                    <label for="art_abstract" style="margin-left:85%">خلاصه مقاله</label>
+                    <textarea id="art_abstract" class="materialize-textarea name-maghale"></textarea>
+                </div>
+                <textarea class="cke_rtl" name="editor1 " id="art_content" rows="10" cols="90" placeholder="چه در فکر داری ؟">
+
+                </textarea>
+                <script>
+                    CKEDITOR.replace( 'art_content', {
+                        contentsLangDirection: 'rtl'
+                    } );
+                </script>
+                <a class="btn waves-effect waves-light blue lighten-1 right" onclick="addToDB()" style="margin: 10px">ارسال</a>
+                <a class="btn waves-effect waves-light blue lighten-4 left"  href="http://localhost:8181/user/dashboard" style="margin: 10px">انصراف</a>
+            </form>
         </div>
 
 
     </div>
-</main>
-
+</div>
+<script src="/js/jquery-3.3.1.js"></script>
+<!--<script src="javascript/materialize.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script src="/js/articles.js"></script>
+<script src="/js/js.js"></script>
 </body>
 </html>

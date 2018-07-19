@@ -13,7 +13,8 @@ function detectArticleRemove(artId) {
         type: "POST",
         url: "/user/deleteArticle",
         data: articleRemoved
-    })
+    });
+    document.location.href = "http://localhost:8181/user/dashboard";
 }
 
 function detectArticleEdit(artId) {
@@ -28,5 +29,13 @@ function detectArticleEdit(artId) {
         type: "POST",
         url: "/user/editArticle",
         data: articleEdited
-    })
+    });
+}
+
+function areYouSure(artID) {
+    var r = confirm(" آیا از حذف این مقاله اطمینان دارید ؟ ");
+    if (r === true)
+        detectArticleRemove(artID);
+    else
+        document.location.href = "http://localhost:8181/user/dashboard";
 }

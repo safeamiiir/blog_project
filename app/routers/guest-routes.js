@@ -17,14 +17,14 @@ router.get("/",function(req,res){
     Article.count(function(err, count) {
         console.log("Number Of Articles : ",count);
 
-        Article.find().sort("-createDate").limit(7).exec(
+        Article.find().sort("-createDate").exec(
             function (err, art) {
                 // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
                 // res.render("E:/Ducuments/Makab/Blog_Project/BlogNode/view/index.ejs"); //win,Masoud
                 // res.render("C:/Users/Alireza/Desktop/Blog_Project/view/index.ejs"); //win,Alireza
                 res.render("/Users/amir/WebstormProjects/Blog_Project/view/index.ejs", {
                     art: art,
-                    artNum: count
+                    artNum: 7
                 })
             }
         );

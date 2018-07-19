@@ -21,6 +21,8 @@ var curentArticleId = 0;
 ////////////////////////////////// Needed Vars ///////////////////////////////////////
 
 
+
+
 passport.use('localLogin', new LocalStrategy({
     usernameField: 'userName',
     passwordField: 'password'
@@ -230,8 +232,21 @@ router.get('/dashboard', isLogedIn, function (req, res) {
 
 //.............................................. ADD Article  ...........................................
 router.get('/addart', isLogedIn, function (req,res) {
-    // res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/addArticle.ejs');  //Mac
-    res.sendfile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/addArticle.html')
+    Article.count({ author : req.user.userName },function(err, count) {
+        console.dir(err);
+        console.dir(count);
+
+        Article.find({ author : req.user.userName }).sort("-createDate").exec(
+            function (err, art) {
+                // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+                res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/addArticle.ejs', {
+                    art: art,
+                    artNum: count
+                })
+            }
+        );
+        // }
+    });
 });
 
 
@@ -349,6 +364,12 @@ router.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
 });
+
+//.............................................. Settings ...........................................
+router.get('/settings', isLogedIn, function (req, res) {
+    res.sendFile("/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/settings.html");
+});
+
 module.exports = router;
 
 
