@@ -25,7 +25,7 @@ router.get("/", function(req,res){
     });
 });
 
-router.get("/post/:postID",function(req,res){
+router.get("/post/:postID/:author/:artName",function(req,res){
     // res.render("E:/Ducuments/Makab/Blog_Project/BlogNode/view/postPage.ejs"); // Win,Masoud
     // res.render("C:/Users/Alireza/Desktop/Blog_Project/view/postPage.ejs"); // Win,Alireza
     console.log(" Post ID :",req.params.postID);

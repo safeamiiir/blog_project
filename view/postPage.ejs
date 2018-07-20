@@ -51,7 +51,7 @@
                     <span class="card-title">Card Title</span>
                 </div>
                 <div class="card-content direction-matlab">
-                    <a href="http://localhost:8181/post/<%= art._id %>"><p class="card-title"> عنوان مقاله : <b> <%= art.title %> </b> </p></a>
+                    <a href="http://localhost:8181/post/<%= art._id %>/<%= art.author %>/<%= art.title %>"><p class="card-title"> عنوان مقاله : <b> <%= art.title %> </b> </p></a>
                     <p> خلاصه مقاله : <%= art.abstract %></p>
                     <br><br><br>
                     <p> متن مقاله : <%= art.content %></p>
