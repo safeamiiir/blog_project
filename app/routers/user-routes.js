@@ -43,6 +43,12 @@ router.get("/index",isLogedIn,function(req,res){
 });
 
 
+router.get("/profile",isLogedIn, function (req,res) {
+    res.render('/Users/amir/WebstormProjects/Blog_Project/view/profileNoArt.ejs', {
+        userName:req.user.userName
+    });
+});
+
 
 passport.use('localLogin', new LocalStrategy({
     usernameField: 'userName',

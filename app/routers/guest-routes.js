@@ -48,9 +48,7 @@ router.get("/post/:postID/:author/:artName",function(req,res){
     });
 
 });
-router.get("/profile", function (req,res) {
-    res.send( " مقاله ای جهت نمایش موجود نیست  ");
-});
+
 router.get("/profile/:userName" , function(req , res){
     console.log("userName : ",req.params.userName);
     Article.count({ author : req.params.userName },function(err, count) {
