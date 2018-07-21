@@ -8,7 +8,7 @@ function addCommentSubmit(artId) {
     return articleAdded;
 }
 
-function addCommentToDB(artID) {
+function addCommentToDB(artID,author,title) {
     // console.log(" in Add Comment ");
     console.log(" Art ID IS  ", artID);
     $.ajax({
@@ -18,5 +18,5 @@ function addCommentToDB(artID) {
         url : '/user/addingcom'
     });
     // console.log("Article From Client Has Been Sent");
-    document.location.href = "http://localhost:8181/post/" + artID;
+    document.location.href = "http://localhost:8181/post/" + artID +'/'+ author + '/' + title;
 }

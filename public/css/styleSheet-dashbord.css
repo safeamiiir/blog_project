@@ -164,16 +164,16 @@ div[class*="-stats"] span:hover {
 }
 
 .android-stats {
-    bottom: 155px;
-    right: 230px;
+    top: 240px;
+    left: 135px;
 }
 .android-stats span:hover {
     background: #80B354;
 }
 
 .ios-stats {
-    bottom: 83px;
-    left: 133px;
+    top: 240px;
+    left: 35px;
 }
 .ios-stats span:hover {
     background: #F5A623;

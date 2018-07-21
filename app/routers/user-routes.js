@@ -21,6 +21,9 @@ var curentArticleId = 0;
 ////////////////////////////////// Needed Vars ///////////////////////////////////////
 
 
+
+
+////////////////////////////////// Index For Authenticated Users ///////////////////////////////////////
 router.get("/index",isLogedIn,function(req,res){
 
     Article.count(function(err, count) {
@@ -43,13 +46,14 @@ router.get("/index",isLogedIn,function(req,res){
 });
 
 
+//////////////////// View Profile For Authenticated Users (whit No Article) /////////////////////////
 router.get("/profile",isLogedIn, function (req,res) {
     res.render('/Users/amir/WebstormProjects/Blog_Project/view/profileNoArt.ejs', {
         userName:req.user.userName
     });
 });
 
-
+/////////////////////////////////////  Authentication /////////////////////////////////////////////
 passport.use('localLogin', new LocalStrategy({
     usernameField: 'userName',
     passwordField: 'password'
@@ -103,6 +107,8 @@ function isLogedIn(req, res, next) {
     }
 }
 
+
+////////////////////////////////// Root (Index) ///////////////////////////////////////
 router.get('/', function (req, res) {
     if (req.isAuthenticated()) {
         res.redirect('/user/dashboard')
@@ -112,7 +118,7 @@ router.get('/', function (req, res) {
 });
 
 
-
+////////////////////////////////// Login Or Sign  Up ///////////////////////////////////////
 router.get('/logInSignUp', function (req, res) {
     if (req.isAuthenticated()) {
         return res.redirect('dashboard');
@@ -123,6 +129,7 @@ router.get('/logInSignUp', function (req, res) {
 
 });
 
+////////////////////////////////// For Sign Up ///////////////////////////////////////
 router.get('/signUp', function (req, res) {
     // res.sendFile('E:/Ducuments/Makab/Blog_Project/BlogNode/view/user/logInSignUp.html') //Win,Masoud
     // res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/logInSignUp.html') //Win,Alireza
@@ -133,7 +140,7 @@ router.get('/signUp', function (req, res) {
 
 
 
-
+////////////////////////////////// For Sign Up ///////////////////////////////////////
 router.post('/signUp', function (req, res) {
 
     console.log("create-user");
@@ -199,19 +206,7 @@ router.post('/addingart', function (req,res) {
 });
 
 
-router.get('/test', isLogedIn , function(req,res){
-    console.log("test.....................");
-    res.send('test..........');
-});
-
 //.............................................. LOG IN ...........................................
-
-// router.post('/logIn', passport.authenticate('localLogin', {
-//     successRedirect: '/user/test',
-//     failureRedirect: '/user/test'
-// }))
-
-
 router.post('/logIn', passport.authenticate('localLogin', { failureRedirect: '/logInSignUp' }), function(req, res) {
     if(!req.session.accessToken){
         console.log(req.session);
@@ -227,7 +222,6 @@ router.post('/logIn', passport.authenticate('localLogin', { failureRedirect: '/l
 
 
 //.............................................. DASHBOARD ...........................................
-
 router.get('/dashboard', isLogedIn, function (req, res) {
     console.log(req.url);
     // req.headers.referer = 'http/localhost:8181/user/dashboard';
@@ -279,18 +273,19 @@ router.get('/addart', isLogedIn, function (req,res) {
 
 
 //.............................................. Show Article  ...........................................
-router.get('/showart', isLogedIn, function (req,res) {
+// router.get('/showart', isLogedIn, function (req,res) {
+//
+//     Article.find({ author : req.user.userName }).sort("-createDate").exec(
+//         function (err, art) {
+//             // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+//             res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.ejs', {
+//                 art: art
+//             })
+//         }
+//     );
+//
+// });    // NOT USIIIIIIIIIIIIIIIIING !!!!!!!!!!!!!!!!!!!
 
-    Article.find({ author : req.user.userName }).sort("-createDate").exec(
-        function (err, art) {
-            // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
-            res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.ejs', {
-                art: art
-            })
-        }
-    );
-
-});    // NOT USIIIIIIIIIIIIIIIIING !!!!!!!!!!!!!!!!!!!
 
 //.............................................. DeleteArticle ...........................................
 router.post('/deleteArticle', function (req,res) {
@@ -303,9 +298,9 @@ router.post('/deleteArticle', function (req,res) {
 });
 
 
+
 //.............................................. EditArticle ...........................................
-//
-router.post('/editArticle',  function(req, res, next) {
+router.post('/editArticle',  function(req, res) {
 
     console.log("article edit Clicked in server side & its ID is :" , req.body.id , " \n\n");
     curentArticleId = req.body.id;
