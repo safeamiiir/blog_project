@@ -1,18 +1,26 @@
 @font-face {
     font-family: IRANSans;
-    src: url(../fonts/IRANSansWeb.woff);
+    src: url(/fonts/IRANSansWeb.woff);
 }
-body{
+
+body {
     background-color: #e1e8ee;
-    font-family: IRANSans;
+    font-family: IRANSans, Helvetica, Arial, sans-serif;
     margin: 0;
 }
-.btn-categuris{
+
+.btn-categuris {
     margin-top: 100px;
 }
-.btn, .btn-large, .btn-floating, .btn-large, .btn-flat{
+
+.btn,
+.btn-large,
+.btn-floating,
+.btn-large,
+.btn-flat {
     padding: 0 1rem !important;
 }
+
 .avatar {
     height: 85px;
     position: relative;
@@ -28,9 +36,15 @@ body{
 }
 
 @keyframes cycle-colors {
-    0% { border-color: hsl(212, 22%, 81%); }
-    50% { border-color: hsl(189, 20%, 60%); }
-    100% { border-color: hsl(198, 22%, 84%); }
+    0% {
+        border-color: hsl(212, 22%, 81%);
+    }
+    50% {
+        border-color: hsl(189, 20%, 60%);
+    }
+    100% {
+        border-color: hsl(198, 22%, 84%);
+    }
 }
 
 @keyframes pulse {
@@ -43,7 +57,7 @@ body{
 .avatar::before,
 .avatar::after {
     animation: pulse 2s linear infinite;
-    border: #cfd8dc  solid 8px;
+    border: #cfd8dc solid 8px;
     border-radius: 9999px;
     box-sizing: border-box;
     content: ' ';
@@ -69,19 +83,46 @@ body{
 .avatar:hover::after {
     animation-delay: .5s;
 }
-.card-content{
+
+.card-content {
     direction: rtl;
 }
-.card-reveal{
+
+.card-reveal {
     direction: rtl;
 }
-.margin-left{
+
+.margin-left {
     margin-left: 50px;
 }
-.navbar-fix{
+
+.navbar-fix {
     position: fixed;
     z-index: 100;
 }
-.widthSebNav{
-    width: 150px;
+
+.circle {
+    margin-left: 160px;
+}
+
+.float-right {
+    float: right !important;
+    margin: 0 0 0 0 !important;
+}
+
+.disable-icon {
+    cursor: not-allowed;
+}
+
+.justify {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.tabs .indicator {
+    background-color: black !important;
+}
+
+.righthToLeft {
+    direction: rtl !important;
 }

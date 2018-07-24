@@ -33,14 +33,12 @@
             <div class="background">
                 <img src="/img/blog-img.jpg">
             </div>
-            <%if(artNum == 0) {%><a href=http://localhost:8181/profile"><img class="circle" src="/img/blog.jpg"></a><%}%>
-            <%if(artNum > 0) {%><a href="http://localhost:8181/profile/<%= art[0].author %>"><img class="circle" src="/img/blog.jpg"></a><%}%>
-            <%if(artNum == 0) {%><a href="/user/dashboard"><span class="white-text name">نام کاربری</span></a><%}%>
-            <%if(artNum > 0) {%><a href="/user/dashboard"><span class="white-text name"><%= art[0].author  %></span></a><%}%>
+            <a href="http://localhost:8181/profile/<%= userName %>"><img class="circle" src="<%= profilePic %>"></a> <!-- masoud -->
+            <a href="/user/dashboard"><span class="white-text name"><%= userName %> </span></a> <!-- masoud -->
+
             <span class="white-text email"> </span>
         </div></li>
-    <li><%if(artNum == 0) {%><a href="http://localhost:8181/user/profile"><i class="material-icons float-right">account_box</i>مشاهده پروفایل</a><%}%></li>
-    <li><%if(artNum > 0) {%><a href="http://localhost:8181/profile/<%= art[0].author %>"><i class="material-icons float-right">account_box</i>مشاهده پروفایل</a><%}%></li>
+    <li><a href="http://localhost:8181/profile/<%= userName %>"><i class="material-icons float-right">account_box</i>مشاهده پروفایل</a></li> <!-- masoud -->
     <li><a href="http://localhost:8181/user/addart"><i class="material-icons float-right">format_align_right</i>ارسال مقاله</a></li>
     <li onclick="Materialize.showStaggeredList('#staggered-test')"><a href="#"><i class="material-icons float-right">edit</i>ویرایش مقاله</a></li>
     <li><a href="http://localhost:8181/user/dashboard"><i class="material-icons float-right">trending_up</i>آمار بازید مقاله</a></li>

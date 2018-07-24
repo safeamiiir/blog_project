@@ -1,0 +1,260 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/1.css" type="text/css" rel="stylesheet">
+    <title>Settings</title>
+</head>
+<body>
+
+    
+        <label>نام کاربری جدید</label><input id="newUserName" type="text">
+        <label>کلمه عبور جدید</label><input id="newPass" type="password">
+        <form action="/user/settingUpload" enctype="multipart/form-data" id="frmUploader" method="POST">
+        <label for="fileUpload" class="file">
+            <input type="file" id="fileUpload" onchange="checkPhoto()" accept="image/png" name="imgUploader" multiple style="opacity: 0;">
+            <p> بارگزاری عکس </p>
+        </label>
+        <input type="submit" value="upload">
+    </form>
+    
+    <p id="succ"></p>
+    <script src="/js/jquery-3.3.1.js"></script>
+    <script src="/js/setting.js"></script>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/styleSheet.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styleSheet-dashbord.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <title>settings</title>
+</head>
+
+<body>
+    <nav role="navigation" class="navbar-fix">
+        <div class="nav-wrapper blue-grey lighten-5">
+            <a href="#!" class="brand-logo center blue-grey-text darken-4">
+                <div class="avatar">
+                    <img src="/img/logInPic.jpg">
+                </div>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="#" data-activates="slide-out" class="button-collapse right display-block">
+                        <i class="material-icons blue-grey-text darken-4">menu</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="sass.html">
+                        <i class="material-icons blue-grey-text darken-4">search</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <ul id="slide-out" class="side-nav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="/img/blog-img.jpg">
+                </div>
+                <a href="http://localhost:8181/profile/<%= user[0].userName %>">
+                    <img class="circle" src="<%= user[0].profilePicture.url %>">
+                </a>
+                <!-- masoud -->
+                <a href="/user/dashboard">
+                    <span class="white-text name">
+                        <%= user[0].userName %>
+                    </span>
+                </a>
+                <!-- masoud -->
+
+                <span class="white-text email"> </span>
+            </div>
+        </li>
+        <li>
+            <a href="http://localhost:8181/profile/<%= user[0].userName %>">
+                <i class="material-icons float-right">account_box</i>مشاهده پروفایل</a>
+        </li>
+        <!-- masoud -->
+        <li>
+            <a href="http://localhost:8181/user/addart">
+                <i class="material-icons float-right">format_align_right</i>ارسال مقاله</a>
+        </li>
+        <li onclick="Materialize.showStaggeredList('#staggered-test')">
+            <a href="#">
+                <i class="material-icons float-right">edit</i>ویرایش مقاله</a>
+        </li>
+        <li>
+            <a href="http://localhost:8181/user/dashboard">
+                <i class="material-icons float-right">trending_up</i>آمار بازید مقاله</a>
+        </li>
+        <li>
+            <a href="http://localhost:8181/user/settings">
+                <i class="material-icons float-right">settings</i>تنظیمات</a>
+        </li>
+        <li>
+            <a href="http://localhost:8181/user/logout">
+                <i class="material-icons float-right">exit_to_app</i>خروج</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+    </ul>
+    <div class="contener">
+        <div class="row">
+            <div class="col s12 auther">
+                <div class="col s12 m6 offset-m3" style="margin-top: 100px ; direction: rtl">
+                    <div class="card-panel backgrond-auther lighten-5 z-depth-0 ">
+                        <div class="row valign-wrapper">
+                            <div class="col s2">
+                                <img src="<%= user[0].profilePicture.url %>" alt="" class="circle responsive-img">
+                                <!-- notice the "circle" class -->
+                            </div>
+                            <div class="col s10">
+                                <span class="black-text">
+                                    <h5>
+                                        <%= user[0].userName %>
+                                    </h5>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m6 offset-m3">
+                <ul id="tabs-swipe-demo" class="tabs right">
+                    <li class="tab col s3 right">
+                        <a href="#test-swipe-1" class="active black-text">حساب کاربری</a>
+                    </li>
+                    <li class="tab col s3 right">
+                        <a href="#test-swipe-2" class="black-text">عکس پروفایل</a>
+                    </li>
+                </ul>
+                <div id="test-swipe-1" class="col s12 blue-grey lighten-5 righthToLeft">
+                    <li style="list-style: none; margin-top: 20px">
+                        <a href="#" class="black-text">
+                            <i class="material-icons blue-grey-text darken-4 right">sentiment_very_satisfied</i>نام</a>
+                    </li>
+                    <a href="#" class="name">
+                        <%= user[0].fname %>
+                    </a>
+                    <div class="input-field inline show" style="display:none">
+                        <input id="fnameInput" type="text" value="<%= user[0].fname %>" class="validate">
+                    </div>
+
+                    <li style="list-style: none; margin-top: 20px">
+                        <a href="#" class="black-text">
+                            <i class="material-icons blue-grey-text darken-4 right">sentiment_very_satisfied</i>نام خانوادگی</a>
+                    </li>
+                    <a href="#" class="name">
+                        <%= user[0].lname %>
+                    </a>
+                    <div class="input-field inline show" style="display:none">
+                        <input id="lnameInput" type="text" value="<%= user[0].lname %>" class="validate">
+                    </div>
+
+                    <li style="list-style: none; margin-top: 20px">
+                        <a href="#" class="black-text">
+                            <i class="material-icons blue-grey-text darken-4 right">face</i>نام کاربری</a>
+                    </li>
+                    <a href="#" class="name">
+                        <%= user[0].userName %>
+                    </a>
+                    <div class="input-field inline show" style="display:none">
+                        <input id="userNameInput" type="text" value="<%= user[0].userName %>" class="validate">
+                    </div>
+
+                    <br>
+                    <li style="list-style: none; margin-top: 20px">
+                        <a href="#" class="black-text">
+                            <i class="material-icons blue-grey-text darken-4 right">local_post_office</i>ایمیل</a>
+                    </li>
+                    <a href="#" class="name">
+                        <%= user[0].email %>
+                    </a>
+                    <div class="input-field inline show" style="display:none">
+                        <input id="emailInput" type="text" value="<%= user[0].email %>" class="validate">
+                    </div>
+
+                    <li style="list-style: none; margin-top: 20px">
+                        <a href="#" class="black-text">
+                            <i class="material-icons blue-grey-text darken-4 right">phone_iphone</i>شماره تلفن همراه</a>
+                    </li>
+                    <a href="#" class="name">
+                        <%= user[0].phoneNumber %>
+                    </a>
+                    <div class="input-field inline show" style="display:none">
+                        <input id="phoneNumberInput" type="text" value="<%= user[0].phoneNumber %>" class="validate">
+                    </div>
+
+                    <li style="list-style: none; margin-top: 20px">
+                        <a href="#" class="black-text">
+                            <i class="material-icons blue-grey-text darken-4 right">lock_open</i>کلمه عبور</a>
+                    </li>
+                    <a href="#" class="name">
+                        <%= user[0].password %>
+                    </a>
+                    <div class="input-field inline show" style="display:none">
+                        <input id="passwordInput" type="password" value="<%= user[0].password %>" class="validate">
+                    </div>
+                   
+                    <br>
+                    <br>
+                    <a id="edit" class="waves-effect waves-light blue-grey lighten-3 btn left" style="margin-bottom: 10px">
+                        <i class="material-icons right">create</i>ویرایش</a>
+                    <a href=" http://localhost:8181/user/settings" id="editConfirmation" class="waves-effect waves-light blue-grey lighten-3 btn left"
+                        style=" display : none; margin-bottom: 10px ">
+                        <i class="material-icons right">create</i> اعمال ویرایش</a>
+
+                    <a id="exit" class="waves-effect waves-light blue-grey lighten-3 btn left" style="display: none ;margin-bottom: 10px ;margin-left: 10px">
+                        <i class="material-icons right">create</i>بخیال</a>
+                </div>
+                <div id="test-swipe-2" class="col s12 blue-grey lighten-5 righthToLeft">
+                    <form action="/user/settingUploadPic" enctype="multipart/form-data" id="frmUploader" method="POST">
+                        <div class="file-field input-field right">
+                            <div class="btn right ">
+
+                                <input type="file" id="fileUpload" onchange="checkPhoto()" accept="image/png" name="imgUploader" multiple>
+                                <span>بارگزاری</span>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="تغیر عکس پروفایل " style="margin-right: 20px;">
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <input href="http://localhost:8181/user/settings" class="btn right" type="submit" value="ذخیره">
+                            <p id="succ"></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<script src="javascript/materialize.js"></script>-->
+    <script src="/js/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="/js/setting.js"></script>
+</body>
+
+</html>

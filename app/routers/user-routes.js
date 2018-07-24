@@ -6,6 +6,8 @@ const _ = require('lodash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const router = express.Router();
+const multer = require('multer');
+const fs = require('fs');
 
 // var Admin = require('../models/Admin');
 // var Article = require('../models/article');
@@ -142,20 +144,28 @@ router.get('/signUp', function (req, res) {
 
 ////////////////////////////////// For Sign Up ///////////////////////////////////////
 router.post('/signUp', function (req, res) {
-
     console.log("create-user");
 
     var date = new Date(Date.now());
     console.log(date);
-
+    var profilePath = "/Users/amir/WebstormProjects/Blog_Project/public/img/fromUser/default.png"; //masoud
+    var imgData = fs.readFileSync(profilePath); //masoud
     var user = new User({
-        // fname : req.body.fname,
-        // lname : req.body.lname,
+        fname : "وارد نشده است",
+        lname : "وارد نشده است",
         userName: req.body.userName,
         password: req.body.password,
         email: req.body.email,
+        phoneNumber : "وارد نشده است" ,
         createDate: date,
-        lastLogin: date
+        lastLogin: date,
+        bio: "بیوگرافی",  //masoud
+        profilePicture: {  //masoud
+            data: imgData,
+            contentType: 'image/png',
+            url: profilePath.substring(48, )
+        }
+
     });
     user.save(function (err, user) {
         if (err) {
@@ -230,20 +240,48 @@ router.get('/dashboard', isLogedIn, function (req, res) {
     // res.sendFile('C:/Users/Alireza/Desktop/Blog_Project/view/user/dashboard/dashboard.html'); // Win,Alireza
     // res.sendFile('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.html');  //Mac
 
-    Article.count({ author : req.user.userName },function(err, count) {
+    // Article.count({ author : req.user.userName },function(err, count) {
+    //     console.dir(err);
+    //     console.dir(count);
+    //
+    //         Article.find({ author : req.user.userName }).sort("-createDate").exec(
+    //             function (err, art) {
+    //                 // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+    //                 res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.ejs', {
+    //                     art: art,
+    //                     artNum: count
+    //                 })
+    //             }
+    //         );
+    //     // }
+    // });
+    Article.count({
+        author: req.user.userName
+    }, function (err, count) {
         console.dir(err);
         console.dir(count);
 
-            Article.find({ author : req.user.userName }).sort("-createDate").exec(
-                function (err, art) {
+        Article.find({
+            author: req.user.userName
+        }).sort("-createDate").exec(
+            function (err, art) {
+                User.find({
+                    userName: req.user.userName
+                }, function (err, user) { //masoud
+                    console.log("usernameeeeeee", user[0].userName); //masoud
                     // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+                    var outputPic = user[0].profilePicture;
+                    console.log("profile pic url:", outputPic.url);
+                    //  fs.writeFileSync("E:/Ducuments/Makab/Blog_Project/BlogNode/public/img/from_db",outputPic.data);
                     res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/dashboard.ejs', {
                         art: art,
-                        artNum: count
-                    })
-                }
-            );
-        // }
+                        artNum: count,
+                        userName: user[0].userName, //masoud
+                        profilePic: outputPic.url //masoud
+                    });
+                });
+            }
+        )
     });
 
 
@@ -578,8 +616,114 @@ router.get('/logout', function(req, res){
 
 //.............................................. Settings ...........................................
 router.get('/settings', isLogedIn, function (req, res) {
-    res.sendFile("/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/settings.html");
+    User.find({userName : req.user.userName}, function(err, user){
+        res.render("/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/settings.ejs",{
+            user : user //masoud
+        });
+    })
+
 });
+
+
+//save the profile picture whome sent from user to node.js server    masoud
+const Storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, "/Users/amir/WebstormProjects/Blog_Project/public/img/fromUser");
+    },
+    filename: function (req, file, callback) {
+        callback(null, req.user.userName + "_profile.png");
+    }
+});
+//create the multer object...
+var upload = multer({
+    storage: Storage
+}).array("imgUploader", 3); //Field name and max count
+
+router.post('/settingUploadPic', function (req, res) {
+    upload(req, res, function (err) {
+        if (err) {
+            console.log(err);
+            return res.end("Something went wrong!");
+        }
+        //update the profile picture
+        var profilePath = "/Users/amir/WebstormProjects/Blog_Project/public/img/fromUser/" + req.user.userName + "_profile.png";
+        var imgData = fs.readFileSync(profilePath);
+
+        var myquery = {
+            userName: req.user.userName
+        };
+        var newvalues = {
+            $set: {
+                profilePicture: {
+                    data: imgData,
+                    contentType: 'image/png',
+                    url: profilePath.substring(48, )
+                }
+
+            }
+        };
+
+
+        User.updateOne(myquery, newvalues, function (err, res) {
+            if (err) throw err;
+            console.log("1 document updated");
+        });
+        // return res.end("File uploaded sucessfully!.");
+    });
+});
+
+router.post('/settingsUpdate' ,function(req,res){
+    console.log(req.body);
+    User.find({userName : req.body.userName}, function(err,user){
+        if(user.length == 0){
+            console.log("it's ok and update");
+            var myquery = {
+                userName: req.user.userName
+            };
+            var newvalues = {
+                $set: {
+                    fname : req.body.fname,
+                    lname : req.body.lname,
+                    userName : req.body.userName,
+                    email : req.body.email,
+                    phoneNumber : req.body.phoneNumber,
+                    password : req.body.password,
+                }
+
+            };
+            User.updateOne(myquery, newvalues, function (err, res) {
+                if (err) throw err;
+                console.log("1 document updated");
+            });
+            return res.end("Your username changed successfully");
+        }
+        if(user.length > 0 && user[0].userName !== req.user.userName){
+            return res.end("The Username is already exist");
+        }
+        if(user.length > 0 && user[0].userName === req.user.userName){
+            var myquery = {
+                userName: req.user.userName
+            };
+            var newvalues = {
+                $set: {
+                    fname : req.body.fname,
+                    lname : req.body.lname,
+                    userName : req.body.userName,
+                    email : req.body.email,
+                    phoneNumber : req.body.phoneNumber,
+                    password : req.body.password,
+                }
+
+            };
+            User.updateOne(myquery, newvalues, function (err, res) {
+                if (err) throw err;
+                console.log("1 document updated");
+            });
+        }
+    })
+
+});
+
 
 module.exports = router;
 

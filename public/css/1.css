@@ -1,0 +1,11 @@
+.file > p{
+    height: 40px;
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid blue;
+}
+
+.file >p:hover{
+    background-color: blue;
+    color: white;
+}

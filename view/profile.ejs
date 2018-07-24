@@ -30,7 +30,7 @@
                 <div class="card-panel backgrond-auther lighten-5 z-depth-0 ">
                     <div class="row valign-wrapper">
                         <div class="col s3">
-                            <% if (artNum == 0) {%> a <img src="/img/blog.jpg" alt="" class="circle responsive-img"><%}%> <!-- notice the "circle" class -->
+                            <% if (artNum == 0) {%><img src="/img/blog.jpg" alt="" class="circle responsive-img"><%}%> <!-- notice the "circle" class -->
                             <% if (artNum != 0) {%><a href="/profile/<%= art[0].author %>"><img src="/img/blog.jpg" alt="" class="circle responsive-img"></a><%}%> <!-- notice the "circle" class -->
                         </div>
                         <div class="col s10">
@@ -50,8 +50,8 @@
         <div class="col s12 m12 l12">
             <div class="card">
                 <div class="card-image">
-                    <img src="/img/blog-img.jpg" height="300px">
-                    <span class="card-title">Card Title</span>
+                    <img class="responsive-img" src="/img/blog-img.jpg" height="300px">
+                   
                 </div>
                 <div class="card-content direction-matlab">
                     <a href="/post/<%= art[i]._id%>/<%= art[i].author%>/<%= art[i].title%>"><p class="card-title"> عنوان مقاله : <b> <%= art[i].title %> </b> </p></a>
