@@ -17,7 +17,7 @@ router.get("/", function(req,res){
                 // res.render("C:/Users/Alireza/Desktop/Blog_Project/view/index.ejs"); //win,Alireza
                 res.render("/Users/amir/WebstormProjects/Blog_Project/view/index.ejs", {
                     art: art,
-                    artNum: 7
+                    artNum: count
                 })
             }
         );

@@ -9,7 +9,9 @@ var article = new Schema({
     createDate : Date,
     lastEdit : Date,
     // image : { Data : Buffer , contentType : String},
-    likes : Number
+    likes : [],
+    comments : [],
+    visits : []
 });
 
 

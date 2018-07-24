@@ -14,3 +14,24 @@ $(window).scroll(function() {
 
 
 });
+
+
+function visit(artID) {
+    $.ajax({
+        type: 'POST',
+        data: {'id' : artID },
+        dataType : "json",
+        url : '/user/visitIt'
+    });
+    console.log("Visit Has Been Clicked Client Side");
+}
+
+function visitG(artID) {
+    $.ajax({
+        type: 'POST',
+        data: {'id' : artID },
+        dataType : "json",
+        url : '/user/visitItG'
+    });
+    console.log("VisitG Has Been Clicked Client Side");
+}

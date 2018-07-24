@@ -36,7 +36,7 @@ router.get("/index",isLogedIn,function(req,res){
                 // res.render("C:/Users/Alireza/Desktop/Blog_Project/view/index.ejs"); //win,Alireza
                 res.render("/Users/amir/WebstormProjects/Blog_Project/view/indexUser.ejs", {
                     art: art,
-                    artNum: 7,
+                    artNum: count,
                     userName:req.user.userName
                 })
             }
@@ -187,7 +187,6 @@ router.post('/addingart', function (req,res) {
         author : req.user.userName,
         createDate : date,
         lastEdit : date,
-        likes : req.body.likes
         // image : { Data : Buffer , contentType : String}
     });
     article.save(function (err,article) {
@@ -338,7 +337,6 @@ router.post('/editingart', function (req,res) {
         abstract : req.body.abstract,
         author : req.user.userName,
         lastEdit : date,
-        likes : req.body.likes
     }, function(err, up) {
         if (err) throw err;
 
@@ -377,7 +375,198 @@ router.post('/addingcom', isLogedIn, function (req, res) {
         }
     });
 
+    ///*/*?*?*?*?*?*?*?*?*//In Article!!
+    // console.log("In Likes");
+    // console.log( 'likedIdddddd ' ,req.body.id);
+    Article.findOne({ _id : req.body.articleId },function(err, art) {
+//         // console.log(" \n\n\n\n comtlikecomtlike : \n" , art , " \n\n\n\n");
+        if ( isLogedIn )
+            art.comments.push({ 'commenter' :  req.user.userName , 'commentedDate' : date });
+        else
+            art.comment.push({ 'commenter' :  'guest' , 'commentedDate' : date});
+        art.save();
+    });
+//
+    ///*/*?*?*?*?*?*?*?*?*//In Article!!
+});
 
+
+//.............................................. ADD Likes ...........................................
+router.post('/likeIt', function (req, res) {
+    // console.log("In Likes");
+    // console.log( 'likedIdddddd ' ,req.body.id);
+    var date = new Date(Date.now());
+    Article.findOne({ _id : req.body.id },function(err, art) {
+        // console.log(" \n\n\n\n Heeeey ! Look At The Data : \n" , art , " \n\n\n\n");
+        if ( isLogedIn )
+            art.likes.push({ 'liker' :  req.user.userName , 'likedDate' : date });
+        else
+            art.likes.push({ 'liker' :  'guest' , 'likedDate' : date});
+        art.save();
+    });
+
+});
+
+//.............................................. ADD Visits (User) ...........................................
+router.post('/visitIt', function (req, res) {
+    // console.log("In Likes");
+    // console.log( 'likedIdddddd ' ,req.body.id);
+    var date = new Date(Date.now());
+    Article.findOne({ _id : req.body.id },function(err, art) {
+        // console.log(" \n\n\n\n Heeeey ! Look At The Data : \n" , art , " \n\n\n\n");
+            art.visits.push({ 'visitor' :  req.user.userName , 'visitedDate' : date });
+        art.save();
+    });
+
+});
+//.............................................. ADD Visits(Guest) ...........................................
+router.post('/visitItG', function (req, res) {
+    // console.log("In Likes");
+    // console.log( 'likedIdddddd ' ,req.body.id);
+    var date = new Date(Date.now());
+    Article.findOne({ _id : req.body.id },function(err, art) {
+        // console.log(" \n\n\n\n Heeeey ! Look At The Data : \n" , art , " \n\n\n\n");
+            art.visits.push({ 'visitor' :  'guest' , 'visitedDate' : date});
+        art.save();
+    });
+
+});
+
+//.............................................. StatisticsAjax ...........................................
+router.post('/statistics', function (req, res) {
+        Article.find({ author : req.user.userName },function (err, art) {
+            // var out = [];
+            for ( var articleIndex = 0; articleIndex < art.length; articleIndex++ ){
+        //  out[indexx] = {'period' : art[index].likes[indexx].likedDate.getFullYear() + '-' + ( art[index].likes[indexx].likedDate.getMonth() + 1 ) + '-' + art[index].likes[indexx].likedDate.getDate() , 'likes' : art[index].likes.length , 'comments' : 2  };
+                console.log('This is articles Visits Total Number :::::: ', art[articleIndex].visits.length);
+                console.log('This is articles Likes Total Number :::::: ', art[articleIndex].likes.length);
+                console.log('This is articles Comments Total Number :::::: ', art[articleIndex].comments.length);
+            }
+        //     console.log('out : ',out);
+        //     res.send(out);
+
+    });
+
+});
+
+//.............................................. TOTAL NUM StatisticsAjax ...........................................
+router.post('/statisticsTotal', function (req, res) {
+
+    Article.find({ author : req.user.userName },function (err, art) {
+    var out = {};
+    var outNums = {};
+    // Total Numbers Handler Starts :
+    for ( var articleIndex0 = 0; articleIndex0 < art.length; articleIndex0++ ){
+        outNums = { 'visits' : art[articleIndex0].visits.length , 'likes' : art[articleIndex0].likes.length, 'comments' : art[articleIndex0].comments.length };
+    }
+        console.log('outNums',outNums);
+        out.totalNum = outNums;
+        // console.log('out1 :' ,out);
+            // Query Started And gets All Articles !
+
+            // VISITS Handler Starts :
+            var visitDate = [];  // makes dates like [ 2018-07-01 , 2018-07-02 , ... ]
+
+            for ( var articleIndex = 0; articleIndex < art.length; articleIndex++ ){
+                for(var visitIndex = 0; visitIndex < art[articleIndex].visits.length; visitIndex++ ){
+                    var tmp = art[articleIndex].visits[visitIndex].visitedDate.getFullYear() + '-' + (art[articleIndex].visits[visitIndex].visitedDate.getMonth()+1) + '-' + art[articleIndex].visits[visitIndex].visitedDate.getDate();
+                    visitDate.push(tmp);
+                }
+            }
+            // console.log(visitDate);
+            // Count each Visits Date and its number of occurrence.
+            var visitedDateCounted = [];
+            var visitedTmpCounted = [];
+            for(var i = 0; i < visitDate.length; i++){
+                var countV = 0;
+                for ( var j = i; j <  visitDate.length; j++ ){
+                    if (visitedTmpCounted.includes(visitDate[i])){
+                        break;
+                    }
+                    if (visitDate[i] === visitDate[j]){
+                        countV ++;
+                    }
+                }
+                if ( visitedTmpCounted.includes(visitDate[i]) === false ){
+                    visitedTmpCounted.push(visitDate[i]);
+                    visitedDateCounted.push({ 'visitDate' : visitDate[i] , 'count' : countV});
+                }
+            }
+            console.log('visitedDateCounted',visitedDateCounted);
+            out.visits =  visitedDateCounted;//// ENDS
+            // console.log('outVisit :' ,out);
+
+
+
+            // LIKES Handler Starts :
+            var likeDate = [];  // makes dates like [ 2018-07-01 , 2018-07-02 , ... ]
+
+            for ( var articleIndexx = 0; articleIndexx < art.length; articleIndexx++ ){
+                for(var likeIndexx = 0; likeIndexx < art[articleIndexx].likes.length; likeIndexx++ ){
+                    var tmpp = art[articleIndexx].likes[likeIndexx].likedDate.getFullYear() + '-' + (art[articleIndexx].likes[likeIndexx].likedDate.getMonth()+1) + '-' + art[articleIndexx].likes[likeIndexx].likedDate.getDate();
+                    likeDate.push(tmpp);
+                }
+            }
+            // console.log(likeDate);
+            // Count each Visits Date and its number of occurrence.
+            var likedDateCounted = [];
+            var likedTmpCounted = [];
+            for(var ii = 0; ii < likeDate.length; ii++){
+                var countL = 0;
+                for ( var jj = ii; jj <  likeDate.length; jj++ ){
+                    if (likedTmpCounted.includes(likeDate[ii])){
+                        break;
+                    }
+                    if (likeDate[ii] === likeDate[jj]){
+                        countL ++;
+                    }
+                }
+                if ( likedTmpCounted.includes(likeDate[ii]) === false ){
+                    likedTmpCounted.push(likeDate[ii]);
+                    likedDateCounted.push({ 'likeDate' : likeDate[ii] , 'count' : countL});
+                }
+            }
+            console.log('likedDateCounted', likedDateCounted);
+            out.likes = likedDateCounted;//// ENDS
+            // console.log('outLike :' ,out);
+
+
+
+
+            // COMMENTS Handler Starts :
+            var commentDate = [];  // makes dates like [ 2018-07-01 , 2018-07-02 , ... ]
+
+            for ( var articleIndexxx = 0; articleIndexxx < art.length; articleIndexxx++ ){
+                for(var commentIndexxx = 0; commentIndexxx < art[articleIndexxx].comments.length; commentIndexxx++ ){
+                    var tmppp = art[articleIndexxx].comments[commentIndexxx].commentedDate.getFullYear() + '-' + (art[articleIndexxx].comments[commentIndexxx].commentedDate.getMonth()+1) + '-' + art[articleIndexxx].comments[commentIndexxx].commentedDate.getDate();
+                    commentDate.push(tmppp);
+                }
+            }
+            // console.log(commentDate);
+            // Count each Visits Date and its number of occurrence.
+            var commentedDateCounted = [];
+            var commentedTmpCounted = [];
+            for(var iii = 0; iii < commentDate.length; iii++){
+                var countC = 0;
+                for ( var jjj = iii; jjj <  commentDate.length; jjj++ ){
+                    if (commentedTmpCounted.includes(commentDate[iii])){
+                        break;
+                    }
+                    if (commentDate[iii] === commentDate[jjj]){
+                        countC ++;
+                    }
+                }
+                if ( commentedTmpCounted.includes(commentDate[iii]) === false ){
+                    commentedTmpCounted.push(commentDate[iii]);
+                    commentedDateCounted.push({ 'commentDate' : commentDate[iii] , 'count' : countC});
+                }
+            }
+            console.log('commentedDateCounted', commentedDateCounted);
+            out.comments = commentedDateCounted;//// ENDS
+            // console.log('outComment :' ,out);
+    console.log("outtttttt : ",out);
+    res.send(out);
+    });
 });
 
 

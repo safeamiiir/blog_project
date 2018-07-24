@@ -49,25 +49,75 @@
     <li><div class="divider"></div></li>
 </ul>
 <div class="container">
+        <div class="row">
+            <div class="col s12 m10" style="margin-top: 140px" >
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="calendar-views left">
+                            <span onclick="totalStatistics()">کل</span>
+                            <span onclick="yearStatistics()">سال</span>
+                            <span onclick="monthStatistics()">ماه</span>
+                            <span onclick="dayStatistics()">روز</span>
+                        </div>
 
-    <div>
-        <br><br><br><br><br>
+                        <h4 class="title right"> آمار بلاگ </h4>
+
+                    </div>
+
+                    <div class="panel-body" >
+                        <div class="categories">
+                            <div class="category">
+                                <span>کل بازدید ها</span>
+                                <span id="totalVisits">0</span>
+                            </div>
+                            <div class="category">
+                                <span>کل پسندین ها</span>
+                                <span id="totalLikes">0</span>
+                            </div>
+                            <div class="category">
+                                <span>کل نظر ها</span>
+                                <span id="totalComments">0</span>
+                            </div>
+                        </div>
+                        <div class="graphs">
+                            <div class="col s11 m11 l11" id="total-chart-div" >
+                                <div id="total-chart" ></div>
+                            </div>
+                            <div class="col s11 m11 l11 " id="day-chart-div" >
+                                <div id="day-chart"></div>
+                            </div>
+                            <div class="col s11 m11 l11 " id="month-chart-div" >
+                                <div id="month-chart"></div>
+                            </div>
+                            <div class="col s11 m11 l11 " id="year-chart-div">
+                                <div id="year-chart"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
     </div>
-    <div class="container">
-        <div class="col l6 ">
-            <div id="line1-chart"></div>
-        </div>
-        <div class="col l6 ">
-            <div id="line2-chart"></div>
-        </div>
-        <div class="col l6 ">
-            <div id="line3-chart"></div>
-        </div>
-        <div class="container center">
-            <a href="#" class="btn spinner-blue lighten-3" onclick="dayStatistics()">روز</a>
-            <a href="#" class="btn spinner-blue lighten-3" onclick="monthStatistics()">ماه</a>
-            <a href="#" class="btn spinner-blue lighten-3" onclick="yearStatistics()">سال</a>
-        </div>
+
+    <!--<div>-->
+        <!--<br><br><br><br><br>-->
+    <!--</div>-->
+    <!--<div class="container">-->
+        <!--<div class="col l6 ">-->
+            <!--<div id="line1-chart"></div>-->
+        <!--</div>-->
+        <!--<div class="col l6 ">-->
+            <!--<div id="line2-chart"></div>-->
+        <!--</div>-->
+        <!--<div class="col l6 ">-->
+            <!--<div id="line3-chart"></div>-->
+        <!--</div>-->
+        <!--<div class="container center">-->
+            <!--<a href="#" class="btn spinner-blue lighten-3" onclick="dayStatistics()">روز</a>-->
+            <!--<a href="#" class="btn spinner-blue lighten-3" onclick="monthStatistics()">ماه</a>-->
+            <!--<a href="#" class="btn spinner-blue lighten-3" onclick="yearStatistics()">سال</a>-->
+        <!--</div>-->
+
     </div>
 
     <!--<div class="row">-->
@@ -137,6 +187,8 @@
             <!--</div>-->
         <!--</div>-->
     <!--</div>-->
+
+
     <div class="row">
         <div class="col 12 dir">
             <a href="#" class="btn purple lighten-3" onclick="Materialize.showStaggeredList('#staggered-test')">نمایش لیست مقالات اخیر</a>

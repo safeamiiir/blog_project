@@ -33,7 +33,6 @@ function editSubmit() {
     articleEdited.author = 'unknown';
     articleEdited.createDate = Date;
     articleEdited.lastEdit = Date;
-    articleEdited.likes = 5;
     // alert(articleAdded.title + articleAdded.content);
     return articleEdited;
 }
