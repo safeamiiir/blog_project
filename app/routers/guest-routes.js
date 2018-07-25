@@ -46,7 +46,7 @@ router.get("/post/:postID/:author/:artName",function(req,res){
                             cmtNum: count,
                             userName: user[0].userName, //masoud
                             bio : user[0].bio,
-                            profilePic: outputPic.url //masoud
+                            profilePic : outputPic.url
                         });
                     });
                 }

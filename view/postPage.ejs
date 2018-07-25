@@ -21,7 +21,7 @@
                     <img src="/img/logInPic.jpg">
                 </div>
             </a>
-            <ul class="right hide-on-med-and-down">
+            <ul class="right">
                 <li>
                     <a href="#">
                         <i class="material-icons blue-grey-text darken-4">search</i>
@@ -41,7 +41,7 @@
                 <div class="col s12 m8 offset-m2 l6 offset-l7">
                     <div class="card-panel backgrond-auther lighten-5 z-depth-0 ">
                         <div class="row valign-wrapper">
-                            <div class="col s2">
+                            <div class="col s2 ">
                                 <a href="/profile/<%= art.author %>">
                                     <img src="<%= profilePic %>" alt="" class="circle responsive-img"> </a>
                                 <!-- notice the "circle" class -->
@@ -89,10 +89,8 @@
                         <a href="#">#tag</a>
                         <a href="#">#tag</a>
                         <a href="#">#tag</a>
-                    </div>
-
-                    <div class="card-action">
-                        <a href="#"><i class="material-icons" style="color:red" onclick="like('<%= art._id %>')" id='like'>favorite_border</i></a>
+                        <a href="#" class="right" onclick="like('<%= art._id %>')" >  پسندیدن </a>
+                        <a href="#" class="right"> <i class="material-icons" style="color:red" onclick="like('<%= art._id %>')" id='like'>favorite_border</i> </a>
                     </div>
 
                 </div>
@@ -102,17 +100,13 @@
             <div class="row">
                 <div class="col s12 auther1">
                     <div class="col s12 m12 ">
-                        <div class="card-panel white  z-depth-4 hoverable" style=" border-radius: 8px;
+                        <div class="card-panel grey lighten-5 z-depth-4 hoverable" style=" border-radius: 8px;
                         border-bottom-left-radius: 0;">
                             <div class="row valign-wrapper">
-                                <div class="col s1">
-                                    <img src="images/blog.jpg" alt="" class="circle responsive-img">
-                                    <!-- notice the "circle" class -->
-                                </div>
-                                <div class="col s10" >
+                                <img src="<%= com[i].authorProfilePicUrl %>" class="col s2 m2 l2 circle responsive-img" alt="">
+                                <div class="col s10 m10 l10 " >
                                     <span class="black-text">
-                                        <h5>
-                                            <%= com[i].author %> :</h5>
+                                        <h5> <%= com[i].author %> :</h5>
                                         <%= com[i].content %>
                                     </span>
                                 </div>

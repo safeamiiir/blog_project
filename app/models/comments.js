@@ -6,6 +6,7 @@ var comment = new Schema({
     author : { type : Object , required : true },
     articleId : { type : String , required: true },
     createDate : Date,
+    authorProfilePicUrl : String
 });
 
 

@@ -449,7 +449,8 @@ router.post('/addingcom', isLogedIn, function (req, res) {
         content: req.body.content,
         author: req.user.userName,
         articleId : req.body.articleId,
-        createDate: date
+        createDate: date,
+        authorProfilePicUrl: req.user.profilePicture.url
     });
 
     comment.save(function (err, cmnt) {
