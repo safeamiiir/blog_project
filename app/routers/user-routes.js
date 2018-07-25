@@ -50,8 +50,22 @@ router.get("/index",isLogedIn,function(req,res){
 
 //////////////////// View Profile For Authenticated Users (whit No Article) /////////////////////////
 router.get("/profile",isLogedIn, function (req,res) {
-    res.render('/Users/amir/WebstormProjects/Blog_Project/view/profileNoArt.ejs', {
-        userName:req.user.userName
+    // res.render('/Users/amir/WebstormProjects/Blog_Project/view/profileNoArt.ejs', {
+    //     userName:req.user.userName
+    // });
+    User.find({
+        userName: req.user.userName
+    }, function (err, user) { //masoud
+        // console.log("usernameeeeeee", user[0].userName); //masoud
+        // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+        var outputPic = user[0].profilePicture;
+        // console.log("profile pic url:", outputPic.url);
+        //  fs.writeFileSync("E:/Ducuments/Makab/Blog_Project/BlogNode/public/img/from_db",outputPic.data);
+        res.render('/Users/amir/WebstormProjects/Blog_Project/view/profileNoArt.ejs', {
+            userName: user[0].userName, //masoud
+            bio: user[0].bio,
+            profilePic: outputPic.url //masoud
+        });
     });
 });
 
@@ -290,21 +304,36 @@ router.get('/dashboard', isLogedIn, function (req, res) {
 
 //.............................................. ADD Article  ...........................................
 router.get('/addart', isLogedIn, function (req,res) {
-    Article.count({ author : req.user.userName },function(err, count) {
+
+    Article.count({
+        author: req.user.userName
+    }, function (err, count) {
         console.dir(err);
         console.dir(count);
 
-        Article.find({ author : req.user.userName }).sort("-createDate").exec(
+        Article.find({
+            author: req.user.userName
+        }).sort("-createDate").exec(
             function (err, art) {
-                // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
-                res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/addArticle.ejs', {
-                    art: art,
-                    artNum: count
-                })
+                User.find({
+                    userName: req.user.userName
+                }, function (err, user) { //masoud
+                    console.log("usernameeeeeee", user[0].userName); //masoud
+                    // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+                    var outputPic = user[0].profilePicture;
+                    console.log("profile pic url:", outputPic.url);
+                    //  fs.writeFileSync("E:/Ducuments/Makab/Blog_Project/BlogNode/public/img/from_db",outputPic.data);
+                    res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/addArticle.ejs', {
+                        art: art,
+                        artNum: count,
+                        userName: user[0].userName, //masoud
+                        profilePic: outputPic.url //masoud
+                    });
+                });
             }
-        );
-        // }
+        )
     });
+
 });
 
 
@@ -351,13 +380,36 @@ router.post('/editArticle',  function(req, res) {
     });
 });
 router.get('/editingArticle', isLogedIn, function (req, res) {
-    res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/editArticle.ejs', {
-        art : {
-            title: arttticle.title,
-            abstract: arttticle.abstract,
-            content: arttticle.content,
-            author : arttticle.author},
-        success: true
+    Article.count({
+        author: req.user.userName
+    }, function (err, count) {
+        console.dir(err);
+        console.dir(count);
+
+        Article.find({
+            author: req.user.userName
+        }).sort("-createDate").exec(
+            function (err, art) {
+                User.find({
+                    userName: req.user.userName
+                }, function (err, user) { //masoud
+                    console.log("usernameeeeeee", user[0].userName); //masoud
+                    // console.log( "\n\n here \n\n",art,"\n\n here \n\n ");
+                    var outputPic = user[0].profilePicture;
+                    console.log("profile pic url:", outputPic.url);
+                    res.render('/Users/amir/WebstormProjects/Blog_Project/view/user/dashboard/editArticle.ejs', {
+                        art : {
+                            title: arttticle.title,
+                            abstract: arttticle.abstract,
+                            content: arttticle.content,
+                            author : arttticle.author},
+                        userName: user[0].userName, //masoud
+                        profilePic: outputPic.url, //masoud
+                        success: true
+                    });
+                });
+            }
+        )
     });
 });
 

@@ -43,7 +43,7 @@
                         <div class="row valign-wrapper">
                             <div class="col s2">
                                 <a href="/profile/<%= art.author %>">
-                                    <img src="/img/blog.jpg" alt="" class="circle responsive-img"> </a>
+                                    <img src="<%= profilePic %>" alt="" class="circle responsive-img"> </a>
                                 <!-- notice the "circle" class -->
                             </div>
                             <div class="col s10">
@@ -51,7 +51,7 @@
                                     <h5>
                                         <%= art.author %>
                                     </h5>
-                                    بیوگرافی نویسنده
+                                    <%= bio %>
                                 </span>
                             </div>
                         </div>
@@ -89,8 +89,12 @@
                         <a href="#">#tag</a>
                         <a href="#">#tag</a>
                         <a href="#">#tag</a>
-
                     </div>
+
+                    <div class="card-action">
+                        <a href="#"><i class="material-icons" style="color:red" onclick="like('<%= art._id %>')" id='like'>favorite_border</i></a>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -139,6 +143,7 @@
     <script src="/js/jquery-3.3.1.js"></script>
     <script src="/js/comment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="/js/like.js"></script>
 </body>
 
 </html>

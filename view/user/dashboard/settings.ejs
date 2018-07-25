@@ -49,7 +49,7 @@
 <body>
     <nav role="navigation" class="navbar-fix">
         <div class="nav-wrapper blue-grey lighten-5">
-            <a href="#!" class="brand-logo center blue-grey-text darken-4">
+            <a href="http://localhost:8181/user/index" class="brand-logo center blue-grey-text darken-4">
                 <div class="avatar">
                     <img src="/img/logInPic.jpg">
                 </div>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="sass.html">
+                    <a href="#">
                         <i class="material-icons blue-grey-text darken-4">search</i>
                     </a>
                 </li>
@@ -98,7 +98,7 @@
                 <i class="material-icons float-right">format_align_right</i>ارسال مقاله</a>
         </li>
         <li onclick="Materialize.showStaggeredList('#staggered-test')">
-            <a href="#">
+            <a href="http://localhost:8181/user/dashboard">
                 <i class="material-icons float-right">edit</i>ویرایش مقاله</a>
         </li>
         <li>
@@ -219,14 +219,14 @@
                    
                     <br>
                     <br>
-                    <a id="edit" class="waves-effect waves-light blue-grey lighten-3 btn left" style="margin-bottom: 10px">
+                    <a id="edit" class="waves-effect waves-light btn left" style="margin-bottom: 10px">
                         <i class="material-icons right">create</i>ویرایش</a>
-                    <a href=" http://localhost:8181/user/settings" id="editConfirmation" class="waves-effect waves-light blue-grey lighten-3 btn left"
-                        style=" display : none; margin-bottom: 10px ">
-                        <i class="material-icons right">create</i> اعمال ویرایش</a>
 
-                    <a id="exit" class="waves-effect waves-light blue-grey lighten-3 btn left" style="display: none ;margin-bottom: 10px ;margin-left: 10px">
-                        <i class="material-icons right">create</i>بخیال</a>
+                    <a href=" http://localhost:8181/user/settings" id="editConfirmation" class="waves-effect waves-light btn lighten-3 left" style="display: none ;margin-bottom: 10px ;margin-left: 10px">
+                        <i class="material-icons right">create</i>اعمال ویرایش</a>
+
+                    <a id="exit" class="waves-effect waves-light btn lighten-3 left" style="display: none ;margin-bottom: 10px ;margin-left: 10px">
+                        <i class="material-icons right">create</i>انصراف</a>
                 </div>
                 <div id="test-swipe-2" class="col s12 blue-grey lighten-5 righthToLeft">
                     <form action="/user/settingUploadPic" enctype="multipart/form-data" id="frmUploader" method="POST">

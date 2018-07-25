@@ -76,7 +76,6 @@ function yearStatistics() {
         url: '/user/statisticsTotal',
         success: function (result) {
 
-            /////BUGGGG :  Counting For Years Is Not CORRECT !!!!!!!!!!!!!!!!!!!!!!!!
 
             $('#year-chart-div').show();
             $('#day-chart-div').hide();
@@ -97,7 +96,6 @@ function yearStatistics() {
             //         {'visitDate' : '2019-01-02',
             //             'count' : 10},]
             //     };
-
             var data = [];
             data.push({
                 'year': result.visits[0].visitDate.substr(0,4),
@@ -110,6 +108,9 @@ function yearStatistics() {
                         'year': result.visits[j].visitDate.substr(0,4),
                         'visits': result.visits[j].count
                     });
+                }
+                else {
+                    data[data.length-1].visits += result.visits[j].count;
                 }
             }
 
